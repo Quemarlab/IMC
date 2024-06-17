@@ -1,15 +1,17 @@
-const form = document.querySelector(".project"),
+const form = document.querySelector(".news"),
 continueBtn = form.querySelector(".button"),
 errorText = document.querySelector(".error-text");
 const dataBox = document.querySelector('.databox');
+const loaderIcon = document.querySelector('.loader-icon');
 
 form.onsubmit = (e)=>{
   e.preventDefault();
 }
 
 continueBtn.onclick = ()=>{
+  loaderIcon.style.display='block';
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/project.php", true);
+  xhr.open("POST", "../ajax/php/news.php", true);
   xhr.onload = ()=>{
     if (xhr.readyState === XMLHttpRequest.DONE){
       if (xhr.status === 200) {
@@ -17,12 +19,14 @@ continueBtn.onclick = ()=>{
         if (data.includes('success')) {
             errorText.style.display = "block";
             errorText.innerHTML = data;
+            loaderIcon.style.display = 'none';
             form.reset();
-            getProject();
+            getnews();
         }
         else{
           errorText.style.display = "block";
           errorText.innerHTML = data;
+          loaderIcon.style.display = 'none';
         }
       }
       else {
@@ -36,11 +40,11 @@ continueBtn.onclick = ()=>{
 
 
 
-function getProject() {
+function getnews() {
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/project.php", true);
+  xhr.open("POST", "../ajax/php/news.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.send("action=getProject");
+  xhr.send("action=getNews");
 
   xhr.onload = function() {
     if (xhr.status === 200) {
@@ -53,23 +57,23 @@ function getProject() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  getProject();
+  getnews();
 });
 
 
-function deleteProject() {
+function deletenews() {
   $(document).ready(function() {
     $('.delete ').on('click', function(event) {
       event.preventDefault();
       var code = $(this).attr('value');
-      if (confirm('Are you sure you want to delete this project?')) {
+      if (confirm('Are you sure you want to delete this news?')) {
           $.ajax({
               type: 'POST',
-              url: '../ajax/php/project.php',
+              url: '../ajax/php/news.php',
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
-                  window.alert('Project deleted successfully!');
-                  getProject();
+                  window.alert('news deleted successfully!');
+                  getnews();
               }
           });
       }
