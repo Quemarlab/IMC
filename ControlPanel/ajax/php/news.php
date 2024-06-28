@@ -4,7 +4,7 @@ require '../../config.php';
 
 class Project extends Database
 {
-    private $uploadDir = '../../upload/';
+    private $uploadDir = '../../upload/news/';
     private $error;
 
     public function saveNews($data, $image)
@@ -31,44 +31,45 @@ class Project extends Database
     }
 
     private function saveNewsAndFiles($data, $image)
-    {
-        $data['code'] = "NW" . rand(1, 9999);
-        $columns = implode(",", array_keys($data));
-        $placeholders = implode(",", array_fill(0, count($data), "?"));
-        $values = array_values($data);
+   {
+       $data['code'] = "NW". rand(1, 9999);
+       $columns = implode(",", array_keys($data));
+       $placeholders = implode(",", array_fill(0, count($data), "?"));
+       $values = array_values($data);
 
-        $query = "INSERT INTO news ($columns) VALUES ($placeholders)";
-        $query = $this->con->prepare($query);
-        $query->execute($values);
+       $query = "INSERT INTO news ($columns) VALUES ($placeholders)";
+       $query = $this->con->prepare($query);
+       $query->execute($values);
 
-        $code = $data['code'];
+       $code = $data['code'];
 
-        foreach ($_FILES as $key => $file) {
-            if (!isset($file['tmp_name'])) {
-                throw new Exception("File is missing");
-            }
+       foreach ($image as $category => $files) {
+           foreach ($files['tmp_name'] as $key => $tmp_name) {
+               if (!isset($tmp_name) || $files['error'][$key] != 0) {
+                   throw new Exception("File is missing or upload failed");
+               }
 
-            $fileCode = "FILE" . rand(1, 9999);
-            $fileSize = $file['size'][0];
+               $fileCode = "FILE". rand(1, 9999);
+               $fileSize = $files['size'][$key];
 
-            if ($fileSize > 10 * 1024 * 1024) {
-                throw new Exception("File size exceeds the limit (10MB).");
-            }
+               if ($fileSize > 10 * 1024 * 1024) {
+                   throw new Exception("File size exceeds the limit (10MB).");
+               }
 
-            $tempFile = $file['tmp_name'][0];
-            $targetFileName = $fileCode . "_" . $file['name'][0];
+               $targetFileName = $fileCode. "_". $files['name'][$key];
 
-            $targetFile = '../../upload/news/' . $targetFileName;
+               $targetFile = $this->uploadDir. $targetFileName;
 
-            if (!move_uploaded_file($tempFile, $targetFile)) {
-                throw new Exception("No file found to be uploaded");
-            }
+               if (!move_uploaded_file($tmp_name, $targetFile)) {
+                   throw new Exception("No file found to be uploaded");
+               }
 
-            $query = "INSERT INTO file(file_code, file) VALUES (?, ?)";
-            $query = $this->con->prepare($query);
-            $query->execute([$code, $fileCode . $_FILES[$key]['name'][0]]);
-        }
-    }
+               $query = "INSERT INTO file(file_code, file) VALUES (?,?)";
+               $query = $this->con->prepare($query);
+               $query->execute([$code, $targetFileName]);
+           }
+       }
+   }
 
     public function getError()
     {
@@ -78,7 +79,7 @@ class Project extends Database
     public function getNews()
     {
         try {
-            $query = "SELECT news.*,file.* FROM news INNER JOIN file ON news.code = file.file_code";
+            $query = "SELECT news.*, (SELECT file.file FROM file WHERE file.file_code = news.code ORDER BY file.id DESC LIMIT 1 ) AS latest_file FROM news ORDER BY news.id DESC;";
             $query = $this->con->prepare($query);
             $query->execute();
 
@@ -89,19 +90,19 @@ class Project extends Database
                             <article class="article article-style-c border">
                                 <div class="article-header">
                                     <div class="article-image">
-                                        <img src="../upload/news/' . $row["file"] . '" alt="Image" style="width: 100%; height: 100%;">
+                                        <img src="../upload/news/' . $row["latest_file"] . '" alt="Image" style="width: 100%; height: 100%;">
                                     </div>
                                 </div>
                                 <div class="article-details">
                                     <div class="article-category"><a href="#">News ' . $count . '</a>
-                                        <div class="bullet"></div> <a href="#">' . $row['date'] . '</a>
+                                        <div class="bullet"></div> <a href="#">' . $row['created_at'] . '</a>
                                     </div>
                                     <div class="article-title">
                                         <h2><a href="#">' . $row['title'] . '</a></h2>
                                     </div>
                                     <div class="article-footer">
-                                        <button type="submit" name="edit" value="' . $row['code'] . '" class="btn btn-warning edit">Edit</button>
-                                        <button type="submit" name="delete" value="' . $row['code'] . '" class="btn btn-danger delete" onclick="deleteNews();">Delete</button>
+                                        <button type="button" name="edit" value="' . $row['code'] . '" class="btn btn-warning edit">Edit</button>
+                                        <button type="button" name="delete" value="'. $row['code']. '" class="btn btn-danger delete">Delete</button>
                                     </div>
                                 </div>
                             </article>
@@ -127,8 +128,7 @@ class Project extends Database
 
             $query = $this->con->prepare("SELECT file FROM file WHERE file_code = ?");
             $query->execute([$code]);
-            $file = $query->fetch(PDO::FETCH_ASSOC);
-            if ($file) {
+            while ($file = $query->fetch(PDO::FETCH_ASSOC)) {
                 unlink($this->uploadDir . $file['file']);
             }
 

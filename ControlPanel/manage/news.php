@@ -22,9 +22,7 @@ include 'inc/sidebar.php';
                             </ul>
                             <div class="tab-content" id="myTabContent2">
                                 <div class="tab-pane fade show active" id="News" role="tabpanel" aria-labelledby="home-tab3">
-                                    <div class="row databox">
-
-                                    </div>
+                                    <div class="row databox"></div>
                                 </div>
                                 <div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="profile-tab3">
                                     <div class="error-text" style="margin-top: 5px; display: none"></div>
@@ -51,7 +49,7 @@ include 'inc/sidebar.php';
                                             <div class="form-group row mb-4">
                                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
                                                 <div class="col-sm-12 col-md-12">
-                                                    <textarea class="tinymce" name="content"></textarea>
+                                                    <textarea class="summernote" name="content"></textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -84,5 +82,5 @@ include 'inc/sidebar.php';
     </section>
 </div>
 
-<script src="../ajax/js/news.js"></script>
 <?php include 'inc/footer.php'; ?>
+<script src="../ajax/js/news.js"></script>

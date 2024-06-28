@@ -61,9 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-function deletenews() {
-  $(document).ready(function() {
-    $('.delete ').on('click', function(event) {
+$(document).ready(function() {
+  $(dataBox).on('click', '.delete', function(event) {
       event.preventDefault();
       var code = $(this).attr('value');
       if (confirm('Are you sure you want to delete this news?')) {
@@ -77,6 +76,5 @@ function deletenews() {
               }
           });
       }
-    });
   });
-}
+});

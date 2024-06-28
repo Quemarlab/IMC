@@ -18,6 +18,9 @@ $userProfile = $userAccess->getUser();
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="../assets/modules/jqvmap/dist/jqvmap.min.css">
     <link rel="stylesheet" href="../assets/modules/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="../assets/modules/dropzonejs/dropzone.css">
+    <link rel="stylesheet" href="../assets/modules/datatables/datatables.min.css">
+    <link rel="stylesheet" href="../assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">
 

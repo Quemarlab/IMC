@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2024 at 06:41 PM
+-- Generation Time: Jun 21, 2024 at 10:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,7 +65,10 @@ INSERT INTO `access_logs` (`id`, `account_id`, `ip_address`, `country`, `region`
 (0, 'SFRACC02932', '196.12.138.148', 'Rwanda', 'Southern Province', 'Runda', '', '', '2024-06-14 07:59:38'),
 (0, 'SFRACC02932', '196.12.138.148', 'Rwanda', 'Southern Province', 'Runda', '', '', '2024-06-14 10:24:23'),
 (0, 'SFRACC02932', '41.216.106.176', 'Rwanda', 'Kigali City', 'Kigali', '', '', '2024-06-14 12:57:02'),
-(0, 'SFRACC02932', '41.216.106.176', 'Rwanda', 'Kigali City', 'Kigali', '', '', '2024-06-14 14:44:07');
+(0, 'SFRACC02932', '41.216.106.176', 'Rwanda', 'Kigali City', 'Kigali', '', '', '2024-06-14 14:44:07'),
+(0, 'SFRACC02932', '41.216.108.67', 'Rwanda', 'Kigali City', 'Kigali', '', '', '2024-06-17 09:09:04'),
+(0, 'SFRACC02932', '41.216.113.53', 'Rwanda', 'Kigali City', 'Kigali', '', '', '2024-06-17 12:27:56'),
+(0, 'SFRACC02932', '41.216.113.53', 'Rwanda', 'Kigali City', 'Kigali', '', '', '2024-06-17 15:12:05');
 
 -- --------------------------------------------------------
 
@@ -93,10 +96,10 @@ CREATE TABLE `account_holders` (
 --
 
 INSERT INTO `account_holders` (`id`, `account_id`, `firstname`, `lastname`, `email`, `username`, `password`, `privilege`, `last_access`, `status`, `profile`, `forgot_code`) VALUES
-(1, 'SFRACC02932', 'William', 'CAMPBELL', 'sample@mail.com', 'sample@mail.com', '$2y$10$.Gii6ipfWj0Rv4mxztAsYOwlmqFZyhX9WWsghdVFJ7nj2fgeTxr3W', 'management', 'online', 'active', 'face1.png', 'used'),
-(2, 'SFRACC15263', 'Anthony', 'CAMPBELL', 'teacher@mail.com', 'teacher@mail.com', '$2y$10$gdPO7UWrXirg4jvf49kCYOw./3b3Hu6FNv7K1pt4pk6NpECU.F4Oe', 'teacher', 'online', 'active', 'face1.png', '227237'),
-(3, 'SFRACC15432', 'Moses', 'THEDDY', 'teacher2@mail.com', 'student@mail.com', '$2y$10$gdPO7UWrXirg4jvf49kCYOw./3b3Hu6FNv7K1pt4pk6NpECU.F4Oe', 'teacher', 'online', 'active', 'face2.jpg', '434324'),
-(4, 'SFRACC43442', 'Ange', 'SYMPHONY', 'library@mail.com', 'library@mail.com', '$2y$10$gdPO7UWrXirg4jvf49kCYOw./3b3Hu6FNv7K1pt4pk6NpECU.F4Oe', 'librarian', 'online', 'active', 'face2.jpg', 'used');
+(1, 'SFRACC02932', 'William', 'CAMPBELL', 'sample@mail.com', 'sample@mail.com', '$2y$10$.Gii6ipfWj0Rv4mxztAsYOwlmqFZyhX9WWsghdVFJ7nj2fgeTxr3W', 'management', '06-17-2024 05:22:41', 'active', 'face1.png', 'used'),
+(2, 'SFRACC15263', 'Anthony', 'CAMPBELL', 'teacher@mail.com', 'teacher@mail.com', '$2y$10$gdPO7UWrXirg4jvf49kCYOw./3b3Hu6FNv7K1pt4pk6NpECU.F4Oe', 'teacher', '06-17-2024 05:22:41', 'active', 'face1.png', '227237'),
+(3, 'SFRACC15432', 'Moses', 'THEDDY', 'teacher2@mail.com', 'student@mail.com', '$2y$10$gdPO7UWrXirg4jvf49kCYOw./3b3Hu6FNv7K1pt4pk6NpECU.F4Oe', 'teacher', '06-17-2024 05:22:41', 'active', 'face2.jpg', '434324'),
+(4, 'SFRACC43442', 'Ange', 'SYMPHONY', 'library@mail.com', 'library@mail.com', '$2y$10$gdPO7UWrXirg4jvf49kCYOw./3b3Hu6FNv7K1pt4pk6NpECU.F4Oe', 'librarian', '06-17-2024 05:22:41', 'active', 'face2.jpg', 'used');
 
 -- --------------------------------------------------------
 
@@ -119,8 +122,34 @@ INSERT INTO `file` (`id`, `file_code`, `file`, `date`) VALUES
 (4, 'PR9189', 'FILE529_1.png', '2024-06-14 13:03:39'),
 (5, 'PR6462', 'FILE5853_1.png', '2024-06-14 13:12:05'),
 (6, 'PR3197', 'FILE9792_Screenshot 2024-06-09 115946.png', '2024-06-14 14:26:22'),
-(7, 'PR819', 'FILE566_Screenshot 2024-06-12 140751.png', '2024-06-14 14:33:02'),
-(8, 'PR67', 'FILE3405_1.png', '2024-06-14 15:00:41');
+(9, 'FILE7825', 'upload/news/Array', '2024-06-17 15:10:29'),
+(10, 'FILE8987', 'upload/news/Array', '2024-06-17 15:10:29'),
+(11, 'FILE5241', 'upload/news/Screenshot 2024-06-16 220504.png', '2024-06-17 15:12:39'),
+(12, 'NW3552', 'upload/news/1.png', '2024-06-17 15:16:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(100) NOT NULL,
+  `code` varchar(100) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `code`, `title`, `content`, `created_at`) VALUES
+(14, 'NW6862', 'Bertin is the one who is organising ', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer venenatis risus gravida auctor convallis. Sed nec enim id mauris volutpat pulvinar. Fusce consectetur est nulla, in faucibus dui euismod in. Donec id tortor sapien. Donec non rutrum justo. Aliquam erat volutpat. Nullam pellentesque condimentum ligula eget vehicula. Etiam aliquet efficitur velit. Nam pulvinar consequat congue. Fusce at velit sit amet nunc egestas consequat. In convallis sapien pellentesque metus viverra mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras gravida imperdiet arcu ut blandit. Donec sed mauris ultrices, dapibus velit quis, gravida nulla. Pellentesque at pellentesque massa, feugiat egestas ex. Nulla eu ipsum quis risus interdum venenatis.&lt;/p&gt;\r\n&lt;p&gt;Ut semper dolor nec tortor ornare, at lobortis nisi sollicitudin. Vestibulum urna dui, facilisis sit amet facilisis vel, ornare in ipsum. Fusce porta libero eu justo lacinia pellentesque. Etiam vitae neque ut massa ullamcorper posuere in eget tellus. Nunc vel nunc porta, scelerisque nisi sed, luctus purus. Vestibulum elementum augue eget convallis aliquet. Etiam sit amet imperdiet magna, vitae mattis ex. Vivamus quis rhoncus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam egestas ultrices ultricies. Mauris felis massa, efficitur a pellentesque vitae, pharetra eget libero. Aenean lacinia leo vel ultrices pulvinar. Cras pharetra dolor arcu, ac placerat lorem egestas vel. Duis lacinia nisi sem, at tempor quam ornare non. Nam vel lectus quis quam eleifend dapibus sit amet eu elit.&lt;/p&gt;\r\n&lt;blockquote&gt;\r\n&lt;p&gt;Cras quis ullamcorper nunc, et consectetur est. Duis pulvinar mollis nisi, at viverra massa interdum ut. Quisque faucibus aliquam quam rhoncus posuere. Ut id nunc iaculis sem faucibus porttitor. Mauris pharetra dapibus elementum. Aliquam erat volutpat. Aliquam sed odio lectus. Donec pulvinar justo nec imperdiet bibendum.&lt;/p&gt;\r\n&lt;/blockquote&gt;', '2024-06-17 14:29:43'),
+(15, 'NW2569', 'Welcome to the store', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer venenatis risus gravida auctor convallis. Sed nec enim id mauris volutpat pulvinar. Fusce consectetur est nulla, in faucibus dui euismod in. Donec id tortor sapien. Donec non rutrum justo. Aliquam erat volutpat. Nullam pellentesque condimentum ligula eget vehicula. Etiam aliquet efficitur velit. Nam pulvinar consequat congue. Fusce at velit sit amet nunc egestas consequat. In convallis sapien pellentesque metus viverra mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras gravida imperdiet arcu ut blandit. Donec sed mauris ultrices, dapibus velit quis, gravida nulla. Pellentesque at pellentesque massa, feugiat egestas ex. Nulla eu ipsum quis risus interdum venenatis.&lt;/p&gt;\r\n&lt;p&gt;Ut semper dolor nec tortor ornare, at lobortis nisi sollicitudin. Vestibulum urna dui, facilisis sit amet facilisis vel, ornare in ipsum. Fusce porta libero eu justo lacinia pellentesque. Etiam vitae neque ut massa ullamcorper posuere in eget tellus. Nunc vel nunc porta, scelerisque nisi sed, luctus purus. Vestibulum elementum augue eget convallis aliquet. Etiam sit amet imperdiet magna, vitae mattis ex. Vivamus quis rhoncus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam egestas ultrices ultricies. Mauris felis massa, efficitur a pellentesque vitae, pharetra eget libero. Aenean lacinia leo vel ultrices pulvinar. Cras pharetra dolor arcu, ac placerat lorem egestas vel. Duis lacinia nisi sem, at tempor quam ornare non. Nam vel lectus quis quam eleifend dapibus sit amet eu elit.&lt;/p&gt;\r\n&lt;blockquote&gt;\r\n&lt;p&gt;Cras quis ullamcorper nunc, et consectetur est. Duis pulvinar mollis nisi, at viverra massa interdum ut. Quisque faucibus aliquam quam rhoncus posuere. Ut id nunc iaculis sem faucibus porttitor. Mauris pharetra dapibus elementum. Aliquam erat volutpat. Aliquam sed odio lectus. Donec pulvinar justo nec imperdiet bibendum.&lt;/p&gt;\r\n&lt;/blockquote&gt;', '2024-06-17 14:32:18'),
+(34, 'NW5296', 'Bertin is the one who is organising ', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer venenatis risus gravida auctor convallis. Sed nec enim id mauris volutpat pulvinar. Fusce consectetur est nulla, in faucibus dui euismod in. Donec id tortor sapien. Donec non rutrum justo. Aliquam erat volutpat. Nullam pellentesque condimentum ligula eget vehicula. Etiam aliquet efficitur velit. Nam pulvinar consequat congue. Fusce at velit sit amet nunc egestas consequat. In convallis sapien pellentesque metus viverra mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras gravida imperdiet arcu ut blandit. Donec sed mauris ultrices, dapibus velit quis, gravida nulla. Pellentesque at pellentesque massa, feugiat egestas ex. Nulla eu ipsum quis risus interdum venenatis.&lt;/p&gt;\r\n&lt;p&gt;Ut semper dolor nec tortor ornare, at lobortis nisi sollicitudin. Vestibulum urna dui, facilisis sit amet facilisis vel, ornare in ipsum. Fusce porta libero eu justo lacinia pellentesque. Etiam vitae neque ut massa ullamcorper posuere in eget tellus. Nunc vel nunc porta, scelerisque nisi sed, luctus purus. Vestibulum elementum augue eget convallis aliquet. Etiam sit amet imperdiet magna, vitae mattis ex. Vivamus quis rhoncus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam egestas ultrices ultricies. Mauris felis massa, efficitur a pellentesque vitae, pharetra eget libero. Aenean lacinia leo vel ultrices pulvinar. Cras pharetra dolor arcu, ac placerat lorem egestas vel. Duis lacinia nisi sem, at tempor quam ornare non. Nam vel lectus quis quam eleifend dapibus sit amet eu elit.&lt;/p&gt;\r\n&lt;p&gt;Cras quis ullamcorper nunc, et consectetur est. Duis pulvinar mollis nisi, at viverra massa interdum ut. Quisque faucibus aliquam quam rhoncus posuere. Ut id nunc iaculis sem faucibus porttitor. Mauris pharetra dapibus elementum. Aliquam erat volutpat. Aliquam sed odio lectus. Donec pulvinar justo nec imperdiet bibendum.&lt;/p&gt;', '2024-06-17 15:10:29'),
+(35, 'NW3552', 'This is all american site', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer venenatis risus gravida auctor convallis. Sed nec enim id mauris volutpat pulvinar. Fusce consectetur est nulla, in faucibus dui euismod in. Donec id tortor sapien. Donec non rutrum justo. Aliquam erat volutpat. Nullam pellentesque condimentum ligula eget vehicula. Etiam aliquet efficitur velit. Nam pulvinar consequat congue. Fusce at velit sit amet nunc egestas consequat. In convallis sapien pellentesque metus viverra mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras gravida imperdiet arcu ut blandit. Donec sed mauris ultrices, dapibus velit quis, gravida nulla. Pellentesque at pellentesque massa, feugiat egestas ex. Nulla eu ipsum quis risus interdum venenatis.&lt;/p&gt;\r\n&lt;p&gt;Ut semper dolor nec tortor ornare, at lobortis nisi sollicitudin. Vestibulum urna dui, facilisis sit amet facilisis vel, ornare in ipsum. Fusce porta libero eu justo lacinia pellentesque. Etiam vitae neque ut massa ullamcorper posuere in eget tellus. Nunc vel nunc porta, scelerisque nisi sed, luctus purus. Vestibulum elementum augue eget convallis aliquet. Etiam sit amet imperdiet magna, vitae mattis ex. Vivamus quis rhoncus elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam egestas ultrices ultricies. Mauris felis massa, efficitur a pellentesque vitae, pharetra eget libero. Aenean lacinia leo vel ultrices pulvinar. Cras pharetra dolor arcu, ac placerat lorem egestas vel. Duis lacinia nisi sem, at tempor quam ornare non. Nam vel lectus quis quam eleifend dapibus sit amet eu elit.&lt;/p&gt;\r\n&lt;p&gt;Cras quis ullamcorper nunc, et consectetur est. Duis pulvinar mollis nisi, at viverra massa interdum ut. Quisque faucibus aliquam quam rhoncus posuere. Ut id nunc iaculis sem faucibus porttitor. Mauris pharetra dapibus elementum. Aliquam erat volutpat. Aliquam sed odio lectus. Donec pulvinar justo nec imperdiet bibendum.&lt;/p&gt;', '2024-06-17 15:12:39');
 
 -- --------------------------------------------------------
 
@@ -143,9 +172,7 @@ CREATE TABLE `project` (
 INSERT INTO `project` (`id`, `code`, `title`, `content`, `date`) VALUES
 (4, 'PR9189', 'Welcome to the store', 'sdjhkl hgjhbjhb&nbsp;', '2024-06-14 13:03:39'),
 (5, 'PR6462', 'This is all american site', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis nisi sit amet elit vestibulum fermentum. Sed vestibulum congue neque, finibus viverra dui volutpat vitae. Suspendisse ut posuere mi, sit amet porttitor velit. In lectus ipsum, posuere vitae auctor non, fermentum at nulla. Donec ut dignissim dolor. Donec consectetur aliquet luctus. Mauris porta in velit sit amet aliquet. Vivamus et neque mi. Nullam leo arcu, placerat sed faucibus ac, pellentesque non tortor.', '2024-06-14 13:12:05'),
-(6, 'PR3197', 'Bertin is the one who is organising ', 'Something is the data based below', '2024-06-14 14:26:22'),
-(7, 'PR819', 'Testing the editor', '&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis nisi sit amet elit vestibulum fermentum. Sed vestibulum congue neque, finibus viverra dui volutpat vitae. Suspendisse ut posuere mi, sit amet porttitor velit. In lectus ipsum, posuere vitae auctor non, fermentum at nulla. Donec ut dignissim dolor. Donec consectetur aliquet luctus. Mauris porta in velit sit amet aliquet. Vivamus et neque mi. Nullam leo arcu, placerat sed faucibus ac, pellentesque non tortor.&lt;/p&gt;', '2024-06-14 14:33:02'),
-(8, 'PR67', 'My Milestone is amazing and so gorgeous', '&lt;h1&gt;My milestone is so amazing and so gorgeous&lt;/h1&gt;', '2024-06-14 15:00:41');
+(6, 'PR3197', 'Bertin is the one who is organising ', 'Something is the data based below', '2024-06-14 14:26:22');
 
 --
 -- Indexes for dumped tables
@@ -155,6 +182,12 @@ INSERT INTO `project` (`id`, `code`, `title`, `content`, `date`) VALUES
 -- Indexes for table `file`
 --
 ALTER TABLE `file`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -171,7 +204,13 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `file`
 --
 ALTER TABLE `file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `project`

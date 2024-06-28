@@ -57,9 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-function deleteProject() {
-  $(document).ready(function() {
-    $('.delete ').on('click', function(event) {
+$(document).ready(function() {
+  $(dataBox).on('click', '.delete', function(event) {
       event.preventDefault();
       var code = $(this).attr('value');
       if (confirm('Are you sure you want to delete this project?')) {
@@ -68,11 +67,10 @@ function deleteProject() {
               url: '../ajax/php/project.php',
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
-                  window.alert('Project deleted successfully!');
-                  getProject();
+                  window.alert('project deleted successfully!');
+                  getnews();
               }
           });
       }
-    });
   });
-}
+});

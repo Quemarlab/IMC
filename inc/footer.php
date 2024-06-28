@@ -1,3 +1,20 @@
+<!-- stat cta-s2-section -->
+<section class="cta-s2-section">
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-9">
+                <h3>If you need any industrial solution, please contact with us</h3>
+            </div>
+            <div class="col col-sm-3">
+                <div class="contact-btn">
+                    <a href="#" class="theme-btn-s4">Contact With Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end cta-s2-section -->
+ 
 <!-- start newsletter-section -->
 <section class="newsletter-section">
     <h2 class="hidden">Newsletter</h2>
@@ -6,9 +23,12 @@
             <div class="col col-xs-12">
                 <div class="newsletter">
                     <div class="newsletter-form">
-                        <form>
-                            <input type="text" class="form-control" placeholder="Subscrib Newsletter (Enter Email Address)">
+                        <form action="ControlPanel/mailerService/newsletter" method="POST" class="php-email-form">
+                            <input type="text" class="form-control" name="email" placeholder="Subscribe Newsletter (Enter Email Address)">
                             <button type="submit"><i class="ti-email"></i></button>
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
                         </form>
                     </div>
                 </div>
@@ -46,8 +66,8 @@
                             <h3>Navigation</h3>
                         </div>
                         <ul>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Contact us</a></li>
+                            <li><a href="about">About us</a></li>
+                            <li><a href="contact">Contact us</a></li>
                             <li><a href="#">Our Services</a></li>
                             <li><a href="#">Privacy Policy </a></li>
                             <li><a href="#">Recent Projects</a></li>
@@ -90,13 +110,11 @@
             <div class="row">
                 <div class="separator"></div>
                 <div class="col col-xs-12">
-                    <p class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates
-                            Hub</a></p>
+                    <p class="copyright">SMC &copy; <?= date('Y') ?></p>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="news">News</a></li>
+                        <li><a href="contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -105,20 +123,15 @@
 </footer>
 <!-- end site-footer -->
 </div>
-<!-- end of page-wrapper -->
 
-
-
-<!-- All JavaScript files
-    ================================================== -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 
-<!-- Plugins for this template -->
 <script src="assets/js/jquery-plugin-collection.js"></script>
-
-<!-- Custom script for this template -->
+<script src="assets/js/aos/aos.js"></script>
+<script src="assets/js/glightbox/js/glightbox.min.js"></script>
 <script src="assets/js/script.js"></script>
+<script src="ControlPanel/ajax/js/php-mail-form.js"></script>
 </body>
 
 </html>

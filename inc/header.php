@@ -1,3 +1,4 @@
+<?php require 'inc/handler.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +28,9 @@
     <link href="assets/css/owl.transitions.css" rel="stylesheet">
     <link href="assets/css/jquery.fancybox.css" rel="stylesheet">
     <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
+    <link href="assets/js/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/js/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/js/aos/aos.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -119,12 +123,15 @@
                             <li class="menu-item">
                                 <a href="contact">Contact</a>
                             </li>
+                            <li class="menu-item">
+                                <a href="gallery">Gallery</a>
+                            </li>
                         </ul>
                     </div><!-- end of nav-collapse -->
 
                     <div class="cart-search-contact">
                         <div class="get-quote">
-                            <a href="#" class="theme-btn">Get A Quote</a>
+                            <a href="contact" class="theme-btn">Get A Quote</a>
                         </div>
                     </div>
                 </div><!-- end of container -->

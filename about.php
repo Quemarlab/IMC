@@ -1,5 +1,4 @@
 <?php
-require 'ControlPanel/config.php';
 require 'inc/header.php';
 ?>
 
@@ -310,23 +309,6 @@ require 'inc/header.php';
 </section>
 <!-- end team-section -->
 
-
-<!-- stat cta-s2-section -->
-<section class="cta-s2-section">
-    <div class="container">
-        <div class="row">
-            <div class="col col-sm-9">
-                <h3>If you need any industrial solution, please contact with us</h3>
-            </div>
-            <div class="col col-sm-3">
-                <div class="contact-btn">
-                    <a href="#" class="theme-btn-s4">Contact With Us</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- end cta-s2-section -->
 
 
 <?php

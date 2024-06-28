@@ -1,7 +1,13 @@
 "use strict";
 
+// DropzoneJS
+if (window.Dropzone) {
+  Dropzone.autoDiscover = false;
+}
+
 var dropzone = new Dropzone("#mydropzone", {
-  url: "#"
+  url: "../ajax/php/gallery.php",
+  addRemoveLinks: true,
 });
 
 var minSteps = 6,
@@ -9,18 +15,24 @@ var minSteps = 6,
   timeBetweenSteps = 100,
   bytesPerStep = 100000;
 
-dropzone.uploadFiles = function(files) {
-  var self = this;
 
+document.querySelector('.upload').addEventListener('click', function (e) {
+  e.preventDefault();
+  dropzone.processQueue(); // Manually trigger file upload
+});
+
+dropzone.uploadFiles = function (files) {
+  var self = this;
+  var totalSteps;
   for (var i = 0; i < files.length; i++) {
 
     var file = files[i];
-      totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
+    totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
 
     for (var step = 0; step < totalSteps; step++) {
       var duration = timeBetweenSteps * (step + 1);
-      setTimeout(function(file, totalSteps, step) {
-        return function() {
+      setTimeout(function (file, totalSteps, step) {
+        return function () {
           file.upload = {
             progress: 100 * (step + 1) / totalSteps,
             total: file.size,
@@ -39,3 +51,8 @@ dropzone.uploadFiles = function(files) {
     }
   }
 }
+
+// Handling file removal
+dropzone.on("removedfile", function (file) {
+  console.log("File removed: " + file.name);
+});

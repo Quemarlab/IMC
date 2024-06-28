@@ -310,46 +310,6 @@
     }
 
 
-    /*------------------------------------------
-        = Header shopping cart toggle
-    -------------------------------------------*/
-    if($(".mini-cart").length) {
-        var cartToggleBtn = $(".cart-toggle-btn");
-        var cartContent = $(".mini-cart-content");
-        var body = $("body");
-
-        cartToggleBtn.on("click", function(e) {
-            cartContent.toggleClass("mini-cart-content-toggle");
-            e.stopPropagation();
-        });
-
-        body.on("click", function() {
-            cartContent.removeClass("mini-cart-content-toggle");
-        }).find(cartContent).on("click", function(e) {
-            e.stopPropagation();
-        });
-    }
-
-    /*------------------------------------------
-        = Header search toggle
-    -------------------------------------------*/
-    if($(".header-search-form-wrapper").length) {
-        var searchToggleBtn = $(".search-toggle-btn");
-        var searchContent = $(".header-search-form");
-        var body = $("body");
-
-        searchToggleBtn.on("click", function(e) {
-            searchContent.toggleClass("header-search-content-toggle");
-            e.stopPropagation();
-        });
-
-        body.on("click", function() {
-            searchContent.removeClass("header-search-content-toggle");
-        }).find(searchContent).on("click", function(e) {
-            e.stopPropagation();
-        });
-    }
-
 
     /*------------------------------------------
         = TESTIMONIALS SLIDER
@@ -536,57 +496,6 @@
     })
 
 
-
-    /*------------------------------------------
-        = CONTACT FORM SUBMISSION
-    -------------------------------------------*/
-    if ($("#contact-form").length) {
-        $("#contact-form").validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-
-                email: "required",
-
-                subject: "required"
-            },
-
-            messages: {
-                name: "Please enter your name",
-                email: "Please enter your email address",
-                subject: "Please enter contact subject"
-            },
-
-            submitHandler: function (form) {
-                $.ajax({
-                    type: "POST",
-                    url: "mail.php",
-                    data: $(form).serialize(),
-                    success: function () {
-                        $( "#loader").hide();
-                        $( "#success").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#success").slideUp( "slow" );
-                        }, 3000);
-                        form.reset();
-                    },
-                    error: function() {
-                        $( "#loader").hide();
-                        $( "#error").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#error").slideUp( "slow" );
-                        }, 3000);
-                    }
-                });
-                return false; // required to block normal submit since you used ajax
-            }
-
-        });
-    }
-
-
     if ($("#contact-form-s2").length) {
         $("#contact-form-s2").validate({
             rules: {
@@ -610,9 +519,10 @@
             },
 
             submitHandler: function (form) {
+                $( "#loader").show();
                 $.ajax({
                     type: "POST",
-                    url: "mail-2.php",
+                    url: "ControlPanel/mailerService/contact",
                     data: $(form).serialize(),
                     success: function () {
                         $( "#loader").hide();
@@ -690,3 +600,38 @@
 
 
 })(window.jQuery);
+
+  /**
+   * Animation on scroll function and init
+   */
+  function aosInit() {
+    AOS.init({
+      duration: 600,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }
+  window.addEventListener('load', aosInit);
+
+  /**
+   * Initiate glightbox
+   */
+  const glightbox = GLightbox({
+    selector: '.glightbox'
+  });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const blogContentElements = document.querySelectorAll('.blogContent');
+
+    blogContentElements.forEach((element) => {
+        const text = element.innerText;
+        const plainText = text.replace(/<[^>]+>/g, ''); // remove HTML tags
+        if (plainText.length > 20) {
+            element.innerText = plainText.substring(0, 100) + '...';
+            console.log(element);
+        }
+    });
+});

@@ -1,6 +1,6 @@
 <?php
-require 'ControlPanel/config.php';
 require 'inc/header.php';
+
 ?>
 <!-- start of hero -->
 <section class="hero hero-slider-wrapper hero-style-2">
@@ -18,10 +18,10 @@ require 'inc/header.php';
                 <div class="row">
                     <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 slide-caption">
                         <div class="slide-subtitle">
-                            <p>Welcome to itus industry</p>
+                            <p>Welcome to Serge mining company</p>
                         </div>
                         <div class="slide-title">
-                            <h2>We are the best industrial company in the world </h2>
+                            <h2>We are the best geological mining company in Rwanda </h2>
                         </div>
                         <div class="btns">
                             <a href="#" class="theme-btn">More About Us</a>
@@ -235,65 +235,67 @@ require 'inc/header.php';
 </section>
 <!-- end testimonials-section -->
 
-
-<!-- start feature-projects-s2 -->
-<section class="feature-projects-s2 section-padding">
+<!-- start feature-projects -->
+<section class="feature-projects section-padding">
     <div class="container">
         <div class="row">
-            <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col col-lg-10 col-lg-offset-1">
                 <div class="section-title-s3">
                     <span>Recently we have finished</span>
                     <h2>Featured Projects</h2>
-                    <p>Wasn't a dream. His room, a proper human room although a little too small, lay peacefully
-                        between its four familiar walls collection of textile samples lay spread out on the
-                        table salesman.</p>
+                    <p>Wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls collection of textile samples lay spread out on the table Samsa was a travelling salesman.</p>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col col-xs-12">
                 <div class="projects-grids clearfix">
-                    <div class="grid">
+                <?php
+                    $projects = $clintObjects->getProjectLimit();
+                    $count = 1;
+                    if (!empty($projects)) {
+                        foreach ($projects as $project) {
+                            if ($count % 2 == 0) {
+                                $class = "grid";
+                            }
+                            else {
+                                $class = "grid right-text";
+                            }
+                            ?>
+                    <div class="<?php echo $class; ?>">
                         <div class="project-pic">
-                            <img src="assets/images/projects/img-5.jpg" alt>
+                            <img src="ControlPanel/upload/project/<?php echo $project['file'] ?>" style="" alt>
                         </div>
                         <div class="details">
-                            <h3><a href="#">Metal and Non - Metals</a></h3>
-                            <span>Recent Project</span>
+                            <div class="inner">
+                                <div class="count">0<?php echo $count ?></div>
+                                <h4><?php echo $project['title'] ?></h4>
+                                <p class="blogContent"><?php echo $project['content'] ?> </p>
+                                <a href="project-single?project=<?php echo $project['code'] ?>" class="theme-btn">View Project</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="grid">
-                        <div class="project-pic">
-                            <img src="assets/images/projects/img-6.jpg" alt>
-                        </div>
-                        <div class="details">
-                            <h3><a href="#">Construction Materials</a></h3>
-                            <span>Recent Project</span>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="project-pic">
-                            <img src="assets/images/projects/img-7.jpg" alt>
-                        </div>
-                        <div class="details">
-                            <h3><a href="#">Paper and Packaging</a></h3>
-                            <span>Recent Project</span>
-                        </div>
-                    </div>
+                    <?php
+                    $count++;
+                        }
+                    }
+                    else {
+                        echo "<div class='alert alert-warning'>No Projects Found</div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col col-xs-12">
                 <div class="view-all">
-                    <a href="#">View All Projects <i class="fi flaticon-slim-right"></i></a>
+                    <a href="project">View All Projects <i class="fi flaticon-slim-right"></i></a>
                 </div>
             </div>
         </div>
     </div> <!-- end container -->
 </section>
-<!-- end feature-projects-s2 -->
+<!-- end feature-projects -->
 
 
 <!-- stat cta-section-s2 -->
@@ -419,57 +421,37 @@ require 'inc/header.php';
         <div class="row">
             <div class="col col-xs-12">
                 <div class="blog-grids clearfix">
+                <?php
+                    $news = $clintObjects->getNewsLimit();
+                    if (!empty($news)) {
+                        foreach ($news as $new) {
+                            ?>
+
                     <div class="grid">
                         <div class="img-holder">
-                            <img src="assets/images/blog/img-1.jpg" alt>
+                            <img src="ControlPanel/upload/news/<?php echo $new['latest_file']; ?>" style="height: 250px; width: 100%;" alt>
                         </div>
                         <div class="date">
-                            <p>18 <span>Aug</span></p>
+                            <p><?php echo substr($new['created_at'], 5, 6) ; ?> <span><?php echo substr($new['created_at'], 0, 4) ; ?></span></p>
                         </div>
                         <div class="details">
-                            <h3><a href="#">Industrial website redesign for marketing to engineers</a></h3>
+                            <h3><a href="news-details?article=<?php echo $new['code']; ?>"><?php echo $new['title']; ?></a></h3>
                             <div class="meta">
                                 <ul>
-                                    <li>By - &nbsp;<a href="#">Zosim vi</a></li>
-                                    <li><a href="#">Industry</a></li>
+                                    <li>By - SMC Media</li>
+                                    <li><a href="#">Geology</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="grid">
-                        <div class="img-holder">
-                            <img src="assets/images/blog/img-2.jpg" alt>
-                        </div>
-                        <div class="date">
-                            <p>18 <span>Aug</span></p>
-                        </div>
-                        <div class="details">
-                            <h3><a href="#">Industrial Content Marketing for Engineers to Make a Buy </a></h3>
-                            <div class="meta">
-                                <ul>
-                                    <li>By - &nbsp;<a href="#">Shaik Naim</a></li>
-                                    <li><a href="#">Factory, Industry</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="img-holder">
-                            <img src="assets/images/blog/img-3.jpg" alt>
-                        </div>
-                        <div class="date">
-                            <p>18 <span>Aug</span></p>
-                        </div>
-                        <div class="details">
-                            <h3><a href="#">Use industrial content marketing to enable sales</a></h3>
-                            <div class="meta">
-                                <ul>
-                                    <li>By - &nbsp;<a href="#">Jhon Paul</a></li>
-                                    <li><a href="#">Construction</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    }
+                    else {
+                        echo "<div class='alert alert-warning'>No News Found</div>";
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -478,21 +460,6 @@ require 'inc/header.php';
 <!-- end recent-blog-section -->
 
 
-<!-- stat cta-s2-section -->
-<section class="cta-s2-section">
-    <div class="container">
-        <div class="row">
-            <div class="col col-sm-9">
-                <h3>If you need any industrial solution, please contact with us</h3>
-            </div>
-            <div class="col col-sm-3">
-                <div class="contact-btn">
-                    <a href="#" class="theme-btn-s4">Contact With Us</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <?php
 require 'inc/footer.php';

@@ -22,7 +22,7 @@ class UserVerification extends Database
                 <?php
                     $l_access = date('m-d-Y h:i:s');
                     $update = "UPDATE account_holders SET last_access = :last_access ";
-                    $update = $con->prepare($update);
+                    $update = $this->con->prepare($update);
                     $data = [
                         ":last_access" => $l_access
                     ];
@@ -110,13 +110,20 @@ class UserVerification extends Database
         }
     }
 
-    public function getProduct()
+    public function getProjectLimit()
     {
-        $query = "SELECT * FROM product WHERE status = :status";
+        $query = "SELECT * FROM project LIMIT 3";
         $query = $this->con->prepare($query);
-        $query->execute([":status" => "active"]);
+        $query->execute();
 
-        return $query;
+        if ($query->rowCount() > 0) {
+            $data = $query->fetch(PDO::FETCH_ASSOC);    
+        }
+        else {
+            $data = [];
+        }
+
+        return $data;
     }
 }
 

@@ -1,5 +1,4 @@
 <?php
-require 'ControlPanel/config.php';
 require 'inc/header.php';
 ?>
 
@@ -96,7 +95,7 @@ require 'inc/header.php';
         <div class="row">
             <div class="col col-xs-12">
                 <div class="contact-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50470.07476441127!2d-122.47261934500531!3d37.75769481910017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sbd!4v1532762769544" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255203.55383056725!2d29.962431609320504!3d-1.9297626221893125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0xf32b36a5411d0bc8!2sKigali!5e0!3m2!1sen!2srw!4v1719256568711!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -105,22 +104,6 @@ require 'inc/header.php';
 <!-- end contact-pg-section -->
 
 
-<!-- stat cta-s2-section -->
-<section class="cta-s2-section">
-    <div class="container">
-        <div class="row">
-            <div class="col col-sm-9">
-                <h3>If you need any industrial solution, please contact with us</h3>
-            </div>
-            <div class="col col-sm-3">
-                <div class="contact-btn">
-                    <a href="#" class="theme-btn-s4">Contact With Us</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- end cta-s2-section -->
 
 
 <?php
