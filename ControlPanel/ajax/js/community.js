@@ -2,7 +2,7 @@ const feedbackTxt = document.querySelector('.feedback');
 
 function communityTable() {
     $.ajax({
-        url: '../ajax/php/community.php',
+        url: '../ajax/php/community',
         type: 'POST',
         data: { action: 'communityTable' },
         success: function(data) {
@@ -33,7 +33,7 @@ function communityTable() {
 
 function contactTable() {
     $.ajax({
-        url: '../ajax/php/community.php',
+        url: '../ajax/php/community',
         type: 'POST',
         data: { action: 'contactTable' },
         success: function(data) {

@@ -2,10 +2,10 @@
 <div class="main-sidebar sidebar-style-5">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index-2.html">Serge</a>
+            <a href="dashboard">Serge</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index-2.html">SMC</a>
+            <a href="dashboard">SMC</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>

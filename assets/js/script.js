@@ -496,6 +496,59 @@
     })
 
 
+    /*------------------------------------------
+        = CONTACT FORM SUBMISSION
+    -------------------------------------------*/
+    if ($("#contact-form").length) {
+        $("#contact-form").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+
+                email: "required",
+
+                subject: "required"
+            },
+
+            messages: {
+                name: "Please enter your name",
+                email: "Please enter your email address",
+                subject: "Please enter contact subject"
+            },
+
+            submitHandler: function (form) {
+                $( "#loader").show();
+                $.ajax({
+                    type: "POST",
+                    url: "ControlPanel/mailerService/contact_message",
+                    data: $(form).serialize(),
+                    success: function () {
+                        $( "#loader").hide();
+                        $( "#success").slideDown( "slow" );
+                        setTimeout(function() {
+                        $( "#success").slideUp( "slow" );
+                        }, 3000);
+                        form.reset();
+                    },
+                    error: function() {
+                        $( "#loader").hide();
+                        $( "#error").slideDown( "slow" );
+                        setTimeout(function() {
+                        $( "#error").slideUp( "slow" );
+                        }, 3000);
+                    }
+                });
+                return false; 
+            }
+
+        });
+    }
+
+
+
+
     if ($("#contact-form-s2").length) {
         $("#contact-form-s2").validate({
             rules: {

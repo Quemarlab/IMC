@@ -15,12 +15,12 @@ class Email extends Database{
 	        $mail->isSMTP();
 	        $mail->Host = 'smtp.gmail.com';
 	        $mail->SMTPAuth = true;
-	        $mail->Username = 'usabuwerakendlyquemar@gmail.com';
-	        $mail->Password = 'ajqevsxcgdtxqkra';
+	        $mail->Username = $this->userEmail;
+	        $mail->Password = $this->userPassword;
 	        $mail->SMTPSecure = 'ssl';
 	        $mail->Port = '465';
 
-	        $mail->setFrom('usabuwerakendlyquemar@gmail.com');
+	        $mail->setFrom($this->userEmail);
 	        $mail->addAddress('usabuweraquemar@gmail.com');
 	        $mail->isHTML(true);
 
@@ -134,7 +134,7 @@ class Email extends Database{
                     echo "OK";
                 }
                 else {
-                    throw new Exception("Something's wrong while saving to database", 1);
+                    throw new PDOException("Something's wrong while saving to database", 1);
                     
                 }
             }

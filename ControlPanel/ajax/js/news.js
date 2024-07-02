@@ -11,7 +11,7 @@ form.onsubmit = (e)=>{
 continueBtn.onclick = ()=>{
   loaderIcon.style.display='block';
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/news.php", true);
+  xhr.open("POST", "../ajax/php/news", true);
   xhr.onload = ()=>{
     if (xhr.readyState === XMLHttpRequest.DONE){
       if (xhr.status === 200) {
@@ -42,7 +42,7 @@ continueBtn.onclick = ()=>{
 
 function getnews() {
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/news.php", true);
+  xhr.open("POST", "../ajax/php/news", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("action=getNews");
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
       if (confirm('Are you sure you want to delete this news?')) {
           $.ajax({
               type: 'POST',
-              url: '../ajax/php/news.php',
+              url: '../ajax/php/news',
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
                   window.alert('news deleted successfully!');

@@ -4,7 +4,7 @@ const dataBox = document.querySelector('.databox');
 
 function getgallery() {
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/gallery.php", true);
+  xhr.open("POST", "../ajax/php/gallery", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("action=getGallery");
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
       if (confirm('Are you sure you want to delete this gallery?')) {
           $.ajax({
               type: 'POST',
-              url: '../ajax/php/gallery.php',
+              url: '../ajax/php/gallery',
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
                   window.alert('gallery deleted successfully!');

@@ -22,15 +22,20 @@ class Authentication extends Database
                 $country = $result['country'];
                 $region = $result['region'];
                 $city = $result['city'];
+                $longitude = $result['longitude'];
+                $latitude = $result['latitude'];
 
-                $save_user_location = "INSERT INTO access_logs (account_id, ip_address, country, region, city) VALUES (:account_id, :ip_address, :country, :region, :city)";
+                $save_user_location = "INSERT INTO access_logs (account_id, ip_address, country, region, city, latitude, longitude) VALUES (? , ? , ? , ? , ? , ? , ?)";
+
                 $save_user_location = $this->con->prepare($save_user_location);
                 $save_user_location_data = [
-                    ":account_id" => $account_id,
-                    ":ip_address" => $ip_address,
-                    ":country" => $country,
-                    ":region" => $region,
-                    ":city" => $city
+                    $account_id,
+                    $ip_address,
+                    $country,
+                    $region,
+                    $city,
+                    $latitude,
+                    $longitude
                 ];
                 $save_user_location->execute($save_user_location_data);
             }
@@ -65,9 +70,9 @@ class Authentication extends Database
     {
         if (!empty($email) && !empty($password)) {
             try {
-                $sql = "SELECT * FROM account_holders WHERE email=:email";
+                $sql = "SELECT * FROM account_holders WHERE email=? OR username = ?";
                 $sql = $this->con->prepare($sql);
-                $sql->execute([":email" => $email]);
+                $sql->execute([$email, $email]);
                 if ($sql->rowCount() > 0) {
                     $row = $sql->fetch(PDO::FETCH_ASSOC);
                     if ($row['status'] == "suspended") {
@@ -81,14 +86,7 @@ class Authentication extends Database
                                     $account_privilege = "management";
                                     $email_address = $row['email'];
                                     $account_id = $row['account_id'];
-                                    $object = new Authentication();
-                                    $object->redirection($account_privilege, $email_address, $account_id);
-                                } elseif ($row['privilege'] == "elder") {
-                                    $account_privilege = "elder";
-                                    $email_address = $row['email'];
-                                    $account_id = $row['account_id'];
-                                    $object = new Authentication();
-                                    $object->redirection($account_privilege, $email_address, $account_id);
+                                    $this->redirection($account_privilege, $email_address, $account_id);
                                 } elseif ($row['privilege'] == "disabled") {
                                     echo "Your account have been suspended, Contact management for more.";
                                 }
@@ -112,7 +110,7 @@ class Authentication extends Database
                         }
                     }
                 } else {
-                    echo $email . " - Email doesn't exist, Try different.";
+                    echo $email . " - Email or Username doesn't exist, Try different.";
                 }
             } catch (PDOException $e) {
                 echo $e->getMessage();
@@ -124,6 +122,7 @@ class Authentication extends Database
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    setcookie('logintimes',1,time() + 60 * 60 * 24 * 7);
     $email = $_POST['email'];
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];

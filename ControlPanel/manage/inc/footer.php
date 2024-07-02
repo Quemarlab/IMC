@@ -25,10 +25,13 @@
 <script src="../assets/modules/dropzonejs/min/dropzone.min.js"></script>
 <script src="../assets/modules/datatables/datatables.min.js"></script>
 <script src="../assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
 
 <script src="../js/page/modules-datatables.js"></script>
 <script src="../js/page/index.js"></script>
 <script src="../js/page/components-multiple-upload.js"></script>
+
+<script src="../js/page/auth-register.js"></script>
 <script src="../js/scripts.js"></script>
 <script src="../js/custom.js"></script>
 </body>

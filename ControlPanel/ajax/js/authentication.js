@@ -8,9 +8,9 @@ form.onsubmit = (e)=>{
 }
 
 continueBtn.onclick = ()=>{
-  loaderIcon.style.display='block';
+  loaderIcon.style.display='';
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/authentication.php", true);
+  xhr.open("POST", "../ajax/php/authentication", true);
   xhr.onload = ()=>{
     if (xhr.readyState === XMLHttpRequest.DONE){
       if (xhr.status === 200) {
@@ -22,6 +22,8 @@ continueBtn.onclick = ()=>{
           errorText.style.display = "block";
           errorText.textContent = data;
           continueBtn.innerHTML = "Login again";
+          loaderIcon.style.display='none';
+
         }
       }
       else {

@@ -1,5 +1,9 @@
-<?php include_once 'inc/header.php'; ?>
-<?php include_once 'inc/sidebar.php'; ?>
+<?php 
+include_once 'inc/header.php'; 
+include_once 'inc/sidebar.php';
+
+$dashboard = $userAccess->dashboardCount();
+?>
 
 
 
@@ -7,95 +11,68 @@
 <!-- Start app main Content -->
 <div class="main-content">
     <section class="section">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-stats">
-                        <div class="card-stats-title">Order Statistics -
-                            <div class="dropdown d-inline">
-                                <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#" id="orders-month">August</a>
-                                <ul class="dropdown-menu dropdown-menu-sm">
-                                    <li class="dropdown-title">Select Month</li>
-                                    <li><a href="#" class="dropdown-item">January</a></li>
-                                    <li><a href="#" class="dropdown-item">February</a></li>
-                                    <li><a href="#" class="dropdown-item">March</a></li>
-                                    <li><a href="#" class="dropdown-item">April</a></li>
-                                    <li><a href="#" class="dropdown-item">May</a></li>
-                                    <li><a href="#" class="dropdown-item">June</a></li>
-                                    <li><a href="#" class="dropdown-item">July</a></li>
-                                    <li><a href="#" class="dropdown-item active">August</a></li>
-                                    <li><a href="#" class="dropdown-item">September</a></li>
-                                    <li><a href="#" class="dropdown-item">October</a></li>
-                                    <li><a href="#" class="dropdown-item">November</a></li>
-                                    <li><a href="#" class="dropdown-item">December</a></li>
-                                </ul>
+    <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
                             </div>
-                        </div>
-                        <div class="card-stats-items">
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">24</div>
-                                <div class="card-stats-item-label">Pending</div>
-                            </div>
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">12</div>
-                                <div class="card-stats-item-label">Shipping</div>
-                            </div>
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">23</div>
-                                <div class="card-stats-item-label">Completed</div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Project</h4>
+                                </div>
+                                <div class="card-body">
+                                    <?php echo $dashboard['project'] ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-archive"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Orders</h4>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                                <i class="far fa-newspaper"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>News</h4>
+                                </div>
+                                <div class="card-body">
+                                    <?php echo $dashboard['news'] ?>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            59
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Gallery</h4>
+                                </div>
+                                <div class="card-body">
+                                <?php echo $dashboard['gallery'] ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-success">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Online Users</h4>
+                                </div>
+                                <div class="card-body">
+                                <?php echo $dashboard['users'] ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                  
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="balance-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Balance</h4>
-                        </div>
-                        <div class="card-body">
-                            $187,13
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="sales-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Sales</h4>
-                        </div>
-                        <div class="card-body">
-                            4,732
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row row-deck">
             <div class="col-lg-8">
                 <div class="card">
@@ -229,145 +206,6 @@
                         <div class="budget-price justify-content-center">
                             <div class="budget-price-square bg-danger" data-width="20"></div>
                             <div class="budget-price-label">Budget Price</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row row-deck">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Best Products</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="owl-carousel owl-theme" id="products-carousel">
-                            <div>
-                                <div class="product-item pb-3">
-                                    <div class="product-image">
-                                        <img alt="image" src="assets/img/products/product-4-50.png" class="img-fluid">
-                                    </div>
-                                    <div class="product-details">
-                                        <div class="product-name">iBook Pro 2018</div>
-                                        <div class="product-review">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <div class="text-muted text-small">67 Sales</div>
-                                        <div class="product-cta">
-                                            <a href="#" class="btn btn-primary">Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="product-item">
-                                    <div class="product-image">
-                                        <img alt="image" src="assets/img/products/product-3-50.png" class="img-fluid">
-                                    </div>
-                                    <div class="product-details">
-                                        <div class="product-name">oPhone S9 Limited</div>
-                                        <div class="product-review">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half"></i>
-                                        </div>
-                                        <div class="text-muted text-small">86 Sales</div>
-                                        <div class="product-cta">
-                                            <a href="#" class="btn btn-primary">Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="product-item">
-                                    <div class="product-image">
-                                        <img alt="image" src="assets/img/products/product-1-50.png" class="img-fluid">
-                                    </div>
-                                    <div class="product-details">
-                                        <div class="product-name">Headphone Blitz</div>
-                                        <div class="product-review">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                        <div class="text-muted text-small">63 Sales</div>
-                                        <div class="product-cta">
-                                            <a href="#" class="btn btn-primary">Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Top Countries</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="text-title mb-2">July</div>
-                                <ul class="list-unstyled list-unstyled-border list-unstyled-noborder mb-0">
-                                    <li class="media">
-                                        <img class="img-fluid mt-1 img-shadow" src="http://puffintheme.com/craft/codiepie/dist/assets/modules/flag-icon-css/flags/4x3/id.svg" alt="image" width="40">
-                                        <div class="media-body ml-3">
-                                            <div class="media-title">USA</div>
-                                            <div class="text-small text-muted">3,282 <i class="fas fa-caret-down text-danger"></i></div>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img class="img-fluid mt-1 img-shadow" src="http://puffintheme.com/craft/codiepie/dist/assets/modules/flag-icon-css/flags/4x3/my.svg" alt="image" width="40">
-                                        <div class="media-body ml-3">
-                                            <div class="media-title">Malaysia</div>
-                                            <div class="text-small text-muted">2,976 <i class="fas fa-caret-down text-danger"></i></div>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img class="img-fluid mt-1 img-shadow" src="http://puffintheme.com/craft/codiepie/dist/assets/modules/flag-icon-css/flags/4x3/us.svg" alt="image" width="40">
-                                        <div class="media-body ml-3">
-                                            <div class="media-title">United States</div>
-                                            <div class="text-small text-muted">1,576 <i class="fas fa-caret-up text-success"></i></div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6 mt-sm-0 mt-4">
-                                <div class="text-title mb-2">August</div>
-                                <ul class="list-unstyled list-unstyled-border list-unstyled-noborder mb-0">
-                                    <li class="media">
-                                        <img class="img-fluid mt-1 img-shadow" src="http://puffintheme.com/craft/codiepie/dist/assets/modules/flag-icon-css/flags/4x3/id.svg" alt="image" width="40">
-                                        <div class="media-body ml-3">
-                                            <div class="media-title">USA</div>
-                                            <div class="text-small text-muted">3,486 <i class="fas fa-caret-up text-success"></i></div>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img class="img-fluid mt-1 img-shadow" src="http://puffintheme.com/craft/codiepie/dist/assets/modules/flag-icon-css/flags/4x3/ps.svg" alt="image" width="40">
-                                        <div class="media-body ml-3">
-                                            <div class="media-title">Palestine</div>
-                                            <div class="text-small text-muted">3,182 <i class="fas fa-caret-up text-success"></i></div>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img class="img-fluid mt-1 img-shadow" src="http://puffintheme.com/craft/codiepie/dist/assets/modules/flag-icon-css/flags/4x3/de.svg" alt="image" width="40">
-                                        <div class="media-body ml-3">
-                                            <div class="media-title">Germany</div>
-                                            <div class="text-small text-muted">2,317 <i class="fas fa-caret-down text-danger"></i></div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>

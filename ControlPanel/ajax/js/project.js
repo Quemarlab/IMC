@@ -9,7 +9,7 @@ form.onsubmit = (e)=>{
 
 continueBtn.onclick = ()=>{
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/project.php", true);
+  xhr.open("POST", "../ajax/php/project", true);
   xhr.onload = ()=>{
     if (xhr.readyState === XMLHttpRequest.DONE){
       if (xhr.status === 200) {
@@ -38,7 +38,7 @@ continueBtn.onclick = ()=>{
 
 function getProject() {
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/php/project.php", true);
+  xhr.open("POST", "../ajax/php/project", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("action=getProject");
 
@@ -64,7 +64,7 @@ $(document).ready(function() {
       if (confirm('Are you sure you want to delete this project?')) {
           $.ajax({
               type: 'POST',
-              url: '../ajax/php/project.php',
+              url: '../ajax/php/project',
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
                   window.alert('project deleted successfully!');

@@ -360,7 +360,7 @@ require 'inc/header.php';
                 <div class="rotate-text">
                     <span>Get A Free Quote</span>
                 </div>
-                <form method="post" class="contact-validation-active" id="contact-form">
+                <form method="post" class="contact-validation-active" id="contact-form" id="contact-form-s2">
                     <div>
                         <input type="text" name="name" id="name" class="form-control" placeholder="Your Name *">
                     </div>

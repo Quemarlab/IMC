@@ -125,6 +125,55 @@ class UserVerification extends Database
 
         return $data;
     }
+
+    public function dashboardCount() {
+        try {
+            $queryP = $this->con->prepare("SELECT * FROM project");
+            $queryP->execute();
+            $project = $queryP->rowCount();
+
+            $queryN = $this->con->prepare("SELECT * FROM news");
+            $queryN->execute();
+            $news = $queryN->rowCount();
+
+            $queryG = $this->con->prepare("SELECT * FROM gallery");
+            $queryG->execute();
+            $gallery = $queryG->rowCount();
+
+            $queryA = $this->con->prepare("SELECT * FROM account_holders");
+            $queryA->execute();
+            $users = $queryA->rowCount();
+
+            $data = ['project' => $project, 'news' => $news, 'gallery' => $gallery, 'users' => $users];
+
+            return $data;
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function userLocation($account_id) {
+        try {
+            $query = $this->con->prepare("SELECT * FROM access_logs WHERE account_id = ? ORDER BY id DESC LIMIT 1");
+
+            $query->execute(array($account_id));
+            
+            if ($query->rowCount() > 0) {
+                $data = $query->fetch(PDO::FETCH_ASSOC);
+            }
+            else {
+                $data = [];
+                throw new Exception("User not found", 1);
+                
+            }
+
+            return $data;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        
+    }
 }
 
 $session = new UserVerification();

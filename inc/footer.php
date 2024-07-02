@@ -7,7 +7,7 @@
             </div>
             <div class="col col-sm-3">
                 <div class="contact-btn">
-                    <a href="#" class="theme-btn-s4">Contact With Us</a>
+                    <a href="contact" class="theme-btn-s4">Contact With Us</a>
                 </div>
             </div>
         </div>
