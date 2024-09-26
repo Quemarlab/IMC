@@ -17,9 +17,9 @@
                                     </button>
                                 </div>
                             </form>
+                            <a href="../authenticate/" class="text-center">Remember? Login</a>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="../authenticate/">Remember? Login</a>
                             <span class="spinner-grow spinner-grow-lg loader-icon" style="display: none"></span>
                         </div>
                     </div>

@@ -25,16 +25,12 @@ require 'inc/header.php';
         <div class="row">
             <div class="col col-md-5">
                 <div class="about-text">
-                    <h2>We are the Leader In <br>Industrial Business</h2>
-                    <p><strong>Textile samples lay spread out on the table</strong> - Samsa was a travelling salesman -
-                        and above it there hung a picture that he had recently cut out of an illustrated magazine and
-                        housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat
-                        upright.</p>
+                    <h2>We are the Leader In <br>Mining extraction</h2>
+                    <p><strong> IMC Ltd is a leading company</strong> in the geographical mining sector, dedicated to sustainable practices and innovative solutions. With years of experience, we specialize in exploring and extracting valuable minerals while prioritizing environmental responsibility and community engagement. Our team of experts utilizes advanced technologies and methodologies to ensure efficient and safe operations, contributing to the growth of the mining industry.</p>
 
                     <div class="info">
-                        <img src="assets/images/signature.png" alt>
-                        <h4>MD. Mokbul</h4>
-                        <span>CEO of the company</span>
+                        <h4>Sytivine DUSHIMIMANA</h4>
+                        <span>Managing Director</span>
                     </div>
                 </div>
             </div>
@@ -47,17 +43,18 @@ require 'inc/header.php';
                         <div class="img-holder">
                             <img src="assets/images/about-pic-2.jpg" alt>
                         </div>
-                        <a href="https://www.youtube.com/embed/7e90gBu4pas?autoplay=1" class="video-btn" data-type="iframe">
+                        <a href="https://www.youtube.com/embed/8-2e1JrAp4Q?autoplay=1" class="video-btn" data-type="iframe">
                             <i class="fi flaticon-round-play-button"></i>
                         </a>
                     </div>
+                    
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col col-xs-12">
                 <div class="experience-text">
-                    <h2><span>35</span> years of experience</h2>
+                    <h2><span>10</span> years of experience</h2>
                 </div>
             </div>
         </div>
@@ -65,25 +62,31 @@ require 'inc/header.php';
             <div class="col col-md-4">
                 <div class="details">
                     <h3>Our Mission</h3>
-                    <p>When Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a
-                        horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see
-                        his brown belly, slightly domed and.</p>
+                    <p>At IMC Ltd, our mission is to transform the geographical mining industry through sustainable practices and innovative technologies. We are committed to extracting valuable resources while prioritizing environmental stewardship and community well-being. Our goal is to create a positive impact on the regions we operate in, ensuring that our activities benefit both the economy and the environment.</p>
                 </div>
             </div>
             <div class="col col-md-4">
                 <div class="details">
                     <h3>Our Vision</h3>
-                    <p>When Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a
-                        horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see
-                        his brown belly, slightly domed and.</p>
+                    <p>Our vision at IMC Ltd is to be a global leader in the mining sector, recognized for our commitment to safety, sustainability, and ethical practices. We aspire to set new standards in the industry, fostering a future where mining operations coexist harmoniously with nature and local communities. By leveraging advanced technologies and fostering partnerships, we aim to drive progress and innovation in geographical mining.</p>
                 </div>
             </div>
             <div class="col col-md-4">
                 <div class="details">
                     <h3>Our Strategies</h3>
-                    <p>When Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a
-                        horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see
-                        his brown belly, slightly domed and.</p>
+                    <p>At IMC Ltd, Our strategies include:</p>
+                    <ol>
+                        <li><strong>Sustainable Practices:</strong> We focus on environmentally responsible mining techniques that minimize our ecological footprint.</li>
+                        <li><strong>Community Engagement:</strong> We actively involve local communities in our projects, ensuring their voices are heard and their needs are met</li>
+                        <li><strong>Innovation and Technology:</strong> By investing in cutting-edge technologies, we enhance efficiency and safety in our operations.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-xs-12">
+                <div class="experience-text">
+                    <h2>"Safety is our priority"</h2>
                 </div>
             </div>
         </div>
@@ -105,8 +108,7 @@ require 'inc/header.php';
                         <div class="details">
                             <span class="count">01</span>
                             <h3>Team of Professional</h3>
-                            <p>Lay peacefully between its four familiar walls. A collection of textile samples lay
-                                spread</p>
+                            <p>Our skilled team at IMC Ltd combines diverse expertise to ensure exceptional results in geographical mining through collaboration and innovation.</p>
                         </div>
                     </div>
                     <div class="grid">
@@ -116,8 +118,7 @@ require 'inc/header.php';
                         <div class="details">
                             <span class="count">02</span>
                             <h3>Full of services</h3>
-                            <p>Lay peacefully between its four familiar walls. A collection of textile samples lay
-                                spread</p>
+                            <p>We provide a comprehensive range of mining services, from exploration to rehabilitation, focusing on quality and sustainability to benefit our clients and communities.</p>
                         </div>
                     </div>
                     <div class="grid">
@@ -127,8 +128,7 @@ require 'inc/header.php';
                         <div class="details">
                             <span class="count">03</span>
                             <h3>Smart Technology</h3>
-                            <p>Lay peacefully between its four familiar walls. A collection of textile samples lay
-                                spread</p>
+                            <p>IMC Ltd utilizes advanced technology to enhance efficiency and safety in our operations, paving the way for a sustainable future in the mining industry.</p>
                         </div>
                     </div>
                     <div class="grid">
@@ -138,8 +138,7 @@ require 'inc/header.php';
                         <div class="details">
                             <span class="count">04</span>
                             <h3>27/7 Support</h3>
-                            <p>Lay peacefully between its four familiar walls. A collection of textile samples lay
-                                spread</p>
+                            <p>We offer round-the-clock support to promptly address client inquiries, ensuring smooth and efficient project operations at all times.</p>
                         </div>
                     </div>
                 </div>
@@ -267,11 +266,11 @@ require 'inc/header.php';
                 <div class="team-grids clearfix">
                     <div class="grid">
                         <div class="img-holder">
-                            <img src="assets/images/team/img-1.jpg" alt>
+                            <img src="assets/images/team/img-3.jpg" alt>
                         </div>
                         <div class="details">
-                            <h3>Doglas Sosanko</h3>
-                            <span>Engineer</span>
+                            <h3>Sytivine DUSHIMIMANA</h3>
+                            <span>Managing Director</span>
                         </div>
                     </div>
                     <div class="grid">
@@ -279,26 +278,17 @@ require 'inc/header.php';
                             <img src="assets/images/team/img-2.jpg" alt>
                         </div>
                         <div class="details">
-                            <h3>Sosnako Kasi</h3>
-                            <span>HR Manager</span>
+                            <h3>Serge NSENGIMANA</h3>
+                            <span>General Manager</span>
                         </div>
                     </div>
                     <div class="grid">
                         <div class="img-holder">
-                            <img src="assets/images/team/img-3.jpg" alt>
+                            <img src="assets/images/team/img-1.jpg" alt>
                         </div>
                         <div class="details">
                             <h3>Takler Borovi</h3>
                             <span>Founder</span>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="img-holder">
-                            <img src="assets/images/team/img-4.jpg" alt>
-                        </div>
-                        <div class="details">
-                            <h3>Doglas Sosanko</h3>
-                            <span>ASS Enginer</span>
                         </div>
                     </div>
                 </div>

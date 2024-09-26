@@ -67,8 +67,8 @@ $(document).ready(function() {
               url: '../ajax/php/project',
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
-                  window.alert('project deleted successfully!');
-                  getnews();
+                  window.alert('Project deleted successfully!');
+                  getProject();
               }
           });
       }

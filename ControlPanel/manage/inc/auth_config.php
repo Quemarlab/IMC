@@ -174,6 +174,47 @@ class UserVerification extends Database
         }
         
     }
+
+    public function getdashnews() {
+        try {
+            $query = $this->con->prepare("SELECT * FROM news ORDER BY id DESC LIMIT 5");
+            $query->execute();
+
+            if ($query->rowCount() > 0) {
+                while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;
+                }
+            }
+            else {
+                $data = [];
+                throw new Exception("No news found", 1);
+            }
+
+            return $data;
+        }
+        catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getlastcontact() {
+        try {
+            $query = $this->con->prepare("SELECT * FROM contact ORDER BY id DESC LIMIT 1");
+            $query->execute();
+            if ($query->rowCount() > 0) {
+                $data = $query->fetch(PDO::FETCH_ASSOC);
+            }
+            else {
+                $data = [];
+                throw new Exception("No contact found", 1);
+            }
+            return $data;
+        }
+        catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+    }
 }
 
 $session = new UserVerification();

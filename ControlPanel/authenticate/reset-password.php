@@ -44,9 +44,9 @@ else {
                                     <button type="submit" class="clickBtn btn btn-primary btn-lg btn-block" tabindex="4">Reset Password</button>
                                 </div>
                             </form>
+                            <a href="../authenticate/" class="text-center">Already reset? Login</a>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="../authenticate/">Already reset? Login</a>
                             <span class="spinner-grow spinner-grow-lg loader-icon" style="display: none"></span>
                         </div>
                     </div>

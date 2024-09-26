@@ -34,7 +34,7 @@ $(document).ready(function() {
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
                   window.alert('gallery deleted successfully!');
-                  getnews();
+                  getgallery();
               }
           });
       }

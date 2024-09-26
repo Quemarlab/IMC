@@ -139,24 +139,41 @@ class ClientObject extends Database {
             }
     }
 
-    public function getNews() {
+    public function getNews($datacode) {
         try {
-            $query = "SELECT news.*, (SELECT file.file FROM file WHERE file.file_code = news.code ORDER BY file.id DESC LIMIT 1 ) AS latest_file FROM news ORDER BY news.id DESC;";
-            $query = $this->con->prepare($query);
-            $query->execute();
+            if (empty($datacode) || $datacode == 'nostr') {
+                $query = "SELECT news.*, (SELECT file.file FROM file WHERE file.file_code = news.code ORDER BY file.id DESC LIMIT 1 ) AS latest_file FROM news ORDER BY news.id DESC;";
+                $query = $this->con->prepare($query);
+                $query->execute();
 
-            if ($query->rowCount() > 0) {
-                while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                    $data[] = $row;
+                if ($query->rowCount() > 0) {
+                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                        $data[] = $row;
+                    }
                 }
+                else {
+                    $data = array();
+                }
+                return $data;
             }
-            else {
-                $data = array();
+            elseif (!empty($datacode)) {
+                $query = "SELECT news.*, (SELECT file.file FROM file WHERE file.file_code = news.code ORDER BY file.id DESC LIMIT 1 ) AS latest_file FROM news WHERE title LIKE '%$datacode%' ORDER BY news.id DESC;";
+                $query = $this->con->prepare($query);
+                $query->execute();
+
+                if ($query->rowCount() > 0) {
+                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                        $data[] = $row;
+                    }
+                }
+                else {
+                    $data = array();
+                }
+                return $data;
             }
-            return $data;
-            } catch (Exception $e) {
-                echo $e->getMessage();
-            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     

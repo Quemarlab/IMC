@@ -26,7 +26,7 @@ require 'inc/header.php';
             <div class="col col-xs-12">
                 <div class="section-title-s2">
                     <span>Our contact info</span>
-                    <h2>Contact with us</h2>
+                    <h2>Get in touch with us</h2>
                 </div>
             </div>
         </div>
@@ -68,15 +68,15 @@ require 'inc/header.php';
                     <div class="info-box">
                         <div class="grid">
                             <h3>Address</h3>
-                            <p>House No, 45 street 21 Bing bang jeoor, Ukrain</p>
+                            <p>Kicukiro, Kigali-RWANDA</p>
                         </div>
                         <div class="grid">
                             <h3>Phone</h3>
-                            <p>654974-644545-344, &nbsp; 654974-644545-344</p>
+                            <p>+250 783 582 953</p>
                         </div>
                         <div class="grid">
                             <h3>Email</h3>
-                            <p>group@info.com, &nbsp; deom@ex.com</p>
+                            <p>info@imc.rw, &nbsp; manager@imc.rw</p>
                         </div>
                         <div class="grid">
                             <ul class="social">

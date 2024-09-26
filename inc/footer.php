@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col col-sm-9">
-                <h3>If you need any industrial solution, please contact with us</h3>
+                <h3>If you need any further assistance, please contact with us</h3>
             </div>
             <div class="col col-sm-3">
                 <div class="contact-btn">
@@ -45,10 +45,9 @@
                 <div class="col col-lg-4 col-md-3 col-sm-6">
                     <div class="widget about-widget">
                         <div class="logo widget-title">
-                            <img src="ControlPanel/assets/logo/logo.png" alt>
+                            <img src="ControlPanel/assets/logo/logo.png" alt="IMC logo" style="height: 100px">
                         </div>
-                        <p>It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a
-                            heavy fur muff that covered the whole of her lower arm towards the viewer.</p>
+                        <p>IMC Ltd is a leading company in the geographical mining sector, dedicated to sustainable practices and innovative solutions.</p>
                         <div class="social-icons">
                             <ul>
                                 <li><a href="#"><i class="ti-facebook"></i></a></li>
@@ -68,10 +67,8 @@
                         <ul>
                             <li><a href="about">About us</a></li>
                             <li><a href="contact">Contact us</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Privacy Policy </a></li>
-                            <li><a href="#">Recent Projects</a></li>
-                            <li><a href="#">Washing history</a></li>
+                            <li><a href="news">Our News</a></li>
+                            <li><a href="project">Recent Projects</a></li>
                         </ul>
                     </div>
                 </div>
@@ -81,11 +78,10 @@
                             <h3>Our Services</h3>
                         </div>
                         <ul>
-                            <li><a href="#">Petroleum and Gas</a></li>
-                            <li><a href="#">Pharmaceutical Research</a></li>
-                            <li><a href="#">Agricultural Processing</a></li>
-                            <li><a href="#">Oil And Lubricant</a></li>
-                            <li><a href="#">Material Engineering</a></li>
+                            <li>Coltan Mining</li>
+                            <li>Nyiramugengeri Mining</li>
+                            <li>Consultancy services</li>
+                            <li>Gasegereti Mining</li>
                         </ul>
                     </div>
                 </div>
@@ -95,10 +91,9 @@
                             <h3>Contact Info</h3>
                         </div>
                         <ul>
-                            <li>House no, 2005 dreem city insprine urrine London.</li>
-                            <li><span>Email: </span> regulation@info.com</li>
-                            <li><span>Phone: </span> 325456.1245</li>
-                            <li><span>Fax: </span> 6548651231</li>
+                            <li>Kicukiro, Kigali-RWANDA</li>
+                            <li><span>Email: </span> info@imc.rw</li>
+                            <li><span>Phone: </span> +250 783 582 953</li>
                         </ul>
                     </div>
                 </div>
@@ -110,7 +105,7 @@
             <div class="row">
                 <div class="separator"></div>
                 <div class="col col-xs-12">
-                    <p class="copyright">SMC &copy; <?= date('Y') ?></p>
+                    <p class="copyright">IMC &copy; <?= date('Y') ?></p>
                     <ul>
                         <li><a href="about">About Us</a></li>
                         <li><a href="news">News</a></li>

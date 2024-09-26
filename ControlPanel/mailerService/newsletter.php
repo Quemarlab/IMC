@@ -89,24 +89,24 @@ class Email extends Database{
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>SMC</h1>
+                        <h1>Interafrican Mining Corporation (IMC)</h1>
                     </div>
                     <div class="content">
                         <p>
                         Subject: Confirmation Subscription
                         
-                        <p>Thank you for subscribing to our newsletter at SMC - Support ! We are thrilled to welcome you to our community of mining enthusiasts and industry followers. By subscribing to our newsletter, you have taken the first step towards staying informed about the latest developments, insights, and updates in the mining sector. Your interest in our company motivates us to continue providing valuable content and resources to keep you informed and engaged.</p><br><br>
+                        <p>Thank you for subscribing to our newsletter at IMC - Support ! We are thrilled to welcome you to our community of mining enthusiasts and industry followers. By subscribing to our newsletter, you have taken the first step towards staying informed about the latest developments, insights, and updates in the mining sector. Your interest in our company motivates us to continue providing valuable content and resources to keep you informed and engaged.</p><br><br>
                         
-                        <p>At SMC - Support , we are dedicated to delivering top-quality information and resources to our subscribers. Your decision to subscribe to our newsletter showcases your commitment to staying informed and connected within the mining industry. We look forward to providing you with regular updates, exclusive content, and exciting news to enhance your knowledge and deepen your passion for mining. Thank you once again for choosing to be part of SMC - Support  newsletter community.</p><br><br>
+                        <p>At IMC - Support , we are dedicated to delivering top-quality information and resources to our subscribers. Your decision to subscribe to our newsletter showcases your commitment to staying informed and connected within the mining industry. We look forward to providing you with regular updates, exclusive content, and exciting news to enhance your knowledge and deepen your passion for mining. Thank you once again for choosing to be part of IMC - Support  newsletter community.</p><br><br>
                         
                         Warm regards,<br><br>
                         
-                        <b>Mr, In-charge of SMC</b><br>
-                        SMC - Support </p>
+                        <b>Mr, In-charge of IMC</b><br>
+                        IMC - Support </p>
 
                     </div>
                     <div class="footer">
-                        <p>&copy; '.date('Y').' SMC. All rights reserved.</p>
+                        <p>&copy; '.date('Y').' IMC. All rights reserved.</p>
                     </div>
                 </div>
             </body>

@@ -71,10 +71,11 @@ $(document).ready(function() {
               url: '../ajax/php/news',
               data: {'code': code, 'role': 'delete'},
               success: function(data) {
-                  window.alert('news deleted successfully!');
+                  window.alert('News deleted successfully!');
                   getnews();
               }
           });
       }
   });
 });
+

@@ -40,8 +40,8 @@ else {
                 <div class="project-info">
                     <h3><?php echo $project['title']; ?></h3>
                     <ul>
-                        <li><span>Owner: </span> SMC</li>
-                        <li><span>Status: </span> Compleated</li>
+                        <li><span>Owner: </span> IMC</li>
+                        <li><span>Status: </span> Completed</li>
                         <li><span>Tags: </span> Geological</li>
                     </ul>
                 </div>

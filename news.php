@@ -28,7 +28,16 @@ require 'inc/header.php';
             <div class="col col-md-9">
                 <div class="blog-content">
                 <?php
-                    $news = $clintObjects->getNews();
+                    if (isset($_POST['search'])) {
+                        $datacode = $_POST['searchstring'];
+                        $datacode = filter_var($datacode, FILTER_SANITIZE_STRING);
+                        $news = $clintObjects->getNews($datacode);
+                    }
+                    else{
+                        $datacode = 'nostr';
+                        $news = $clintObjects->getNews($datacode);
+                    }
+                    
                     if (!empty($news)) {
                         foreach ($news as $new) {
                             ?>
@@ -62,11 +71,11 @@ require 'inc/header.php';
                 <div class="blog-sidebar">
                     <div class="widget search-widget">
                         <h3>Search Here</h3>
-                        <form>
+                        <form method="POST">
                             <div>
-                                <input type="text" class="form-control" placeholder="Enter Search Keyword">
-                                <button><i class="ti-search"></i></button>
-                            </div>
+                                <input type="text" name="searchstring" class="form-control" placeholder="Enter Search Keyword">
+                                <button type="submit" name="search"><i class="ti-search"></i></button>
+                            </div>   
                         </form>
                     </div>
                     <div class="widget popular-post-widget">

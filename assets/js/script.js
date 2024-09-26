@@ -684,7 +684,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const plainText = text.replace(/<[^>]+>/g, ''); // remove HTML tags
         if (plainText.length > 20) {
             element.innerText = plainText.substring(0, 100) + '...';
-            console.log(element);
         }
     });
 });

@@ -101,7 +101,7 @@ class Project extends Database
                                         <h2><a href="#">' . $row['title'] . '</a></h2>
                                     </div>
                                     <div class="article-footer">
-                                        <button type="submit" name="edit" value="' . $row['code'] . '" class="btn btn-warning edit">Edit</button>
+                                        <form method="POST" action="contentEdit" class="d-inline"><button type="submit" name="edit" value="proj' . $row['code'] . '" class="btn btn-warning edit">Edit</button></form>
                                         <button type="submit" name="delete" value="' . $row['code'] . '" class="btn btn-danger delete" onclick="deleteProject();">Delete</button>
                                     </div>
                                 </div>

@@ -89,7 +89,7 @@ class Email extends Database{
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>SMC</h1>
+                        <h1>Interafrican Mining Corporation (IMC)</h1>
                     </div>
                     <div class="content">
                         <p>
@@ -102,11 +102,11 @@ class Email extends Database{
                         Warm regards,<br><br>
                         
                         <b>Mr/Mrs '.$data['name'].'</b><br>
-                        SMC - Contact </p>
+                        IMC - Contact </p>
 
                     </div>
                     <div class="footer">
-                        <p>&copy; '.date('Y').' SMC. All rights reserved.</p>
+                        <p>&copy; '.date('Y').' IMC. All rights reserved.</p>
                     </div>
                 </div>
             </body>
