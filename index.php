@@ -169,7 +169,7 @@ require 'inc/header.php';
         <div class="row">
             <div class="col col-xs-12">
                 <div class="more-about">
-                    <a href="#">More About Us <i class="fi flaticon-slim-right"></i></a>
+                    <a href="about">More About Us <i class="fi flaticon-slim-right"></i></a>
                 </div>
             </div>
         </div>

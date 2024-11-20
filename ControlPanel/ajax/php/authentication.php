@@ -1,4 +1,4 @@
-<?php
+    <?php
 require '../../config.php';
 
 class Authentication extends Database
@@ -77,7 +77,7 @@ class Authentication extends Database
                     $row = $sql->fetch(PDO::FETCH_ASSOC);
                     if ($row['status'] == "suspended") {
                         echo "The account is blocked based on login attempts exceed allowed,
-                    Contact the management to unlock your account";
+                              Contact the management to unlock your account";
                     } else {
                         $password_check = password_verify($password, $row['password']);
                         if ($password_check) {

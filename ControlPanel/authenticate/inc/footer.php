@@ -1,6 +1,6 @@
 
 <div class="simple-footer">
-                            Copyright &copy; Serge <?= date('Y') ?>
+                            Copyright &copy; IMC <?= date('Y') ?>
                         </div>
                     </div>
                 </div>
