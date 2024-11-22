@@ -107,7 +107,7 @@ $lastcontact = $userAccess->getlastcontact();
                                     }
                                 }
                                 else {
-                                    echo "<tr><td colspan='3'>No News Found</td></tr>";
+                                    echo "<tr><td colspan='3' align='center'>No News Found</td></tr>";
                                 }
                                 ?>
                             </table>
