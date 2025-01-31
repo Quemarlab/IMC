@@ -43,7 +43,7 @@ else {
                                 </div>
                                 <h2><?php echo $news['title']; ?></h2>
                                 <ul class="meta">
-                                    <li>By: <a href="#">SMC - Media</a></li>
+                                    <li>By: <a href="#">IMC - Media</a></li>
                                     <li><p><?php echo $news['created_at']; ?></p></li>
                                 </ul>
                                 <div class="entry-details">

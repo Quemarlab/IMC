@@ -17,7 +17,7 @@ else {
             <div class="col col-xs-12">
                 <h2>Project <?php echo $project['title']; ?></h2>
                 <ol class="breadcrumb">
-                    <li><a href="../Serge/">Home</a></li>
+                    <li><a href="../IMC/">Home</a></li>
                     <li>Project <?php echo $project['title']; ?></li>
                 </ol>
             </div>

@@ -126,7 +126,10 @@ $lastcontact = $userAccess->getlastcontact();
                     </div>
                     <div class="card-body p-0">
                         <div class="tickets-list">
-                            <a href="#" class="ticket-item">
+                            <?php
+                            if(!empty($lastcontact)) {
+                                ?>
+                                <a href="#" class="ticket-item">
                                 <div class="ticket-title">
                                     <h4><?php echo $lastcontact['name']?></h4>
                                 </div>
@@ -137,6 +140,16 @@ $lastcontact = $userAccess->getlastcontact();
                             <a href="community" class="ticket-item ticket-more">
                                 View All <i class="fas fa-chevron-right"></i>
                             </a>
+                                <?php
+                            }
+                            else {
+                                ?>
+                                <div class="ticket-info">
+                                    <p>There is no contact have been made.</p>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

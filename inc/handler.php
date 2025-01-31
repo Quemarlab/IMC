@@ -138,7 +138,6 @@ class ClientObject extends Database {
                 echo $e->getMessage();
             }
     }
-
     public function getNews($datacode) {
         try {
             if (empty($datacode) || $datacode == 'nostr') {

@@ -193,7 +193,7 @@ class UserVerification extends Database
             return $data;
         }
         catch (Exception $e) {
-            echo $e->getMessage();
+            $e->getMessage();
         }
     }
 
@@ -206,12 +206,12 @@ class UserVerification extends Database
             }
             else {
                 $data = [];
-                throw new Exception("No contact found", 1);
+                throw new Exception("No contacts found", 1);
             }
             return $data;
         }
         catch (Exception $e) {
-            echo $e->getMessage();
+            $e->getMessage();
         }
 
     }
