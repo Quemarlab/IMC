@@ -104,7 +104,7 @@ class resetPassword extends Database{
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>SMC</h1>
+                        <h1>IMC</h1>
                     </div>
                     <div class="content">
                         <h1>Successful Resetted</h1>
@@ -112,16 +112,16 @@ class resetPassword extends Database{
 
                         Dear '.$userName.',<br>
 
-                        You have successfully reset your password. Your new password is now [new_password]. You can now log in to your account using this new password.<br><br>
+                        You have successfully reset your password. Your new password is now [new_password]. You can now log in to your account updated credentials.<br><br>
 
-                        If you have any trouble logging in, please contact our support team at support@icm.com <br><br>
+                        If you have any trouble logging in or displaying, please contact our support team at support@icm.com <br><br>
 
                         Best regards,<br>
-                        [SMC - Security support] </p>
+                        [IMC - Security support] </p>
 
                         </div>
                     <div class="footer">
-                        <p>&copy; '.date('Y').' SMC. All rights reserved.</p>
+                        <p>&copy; '.date('Y').' IMC. All rights reserved.</p>
                     </div>
                 </div>
             </body>
@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "<div class='alert alert-danger'><i class='fa-solid fa-circle-exclamation'></i> {$functionObject->getError()}</div>";
     }
     else {
-        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i>Confirmation Email is already sent !</div>";
+        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Confirmation Email is already sent !</div>";
     }
 }
 ?>

@@ -141,7 +141,7 @@ class Profile extends Database {
 	        $mail->Port = '465';
 
 
-            $mail->setFrom($this->userEmail, 'SMC - Security Support');
+            $mail->setFrom($this->userEmail, 'IMC - Security Support');
             $mail->addAddress($user['email'], ''.$user['firstname'].' '.$user['lastname'].'');
             $mail->isHTML(true);
             $mail->Subject = "Successful changed";
@@ -224,7 +224,7 @@ class Profile extends Database {
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>SMC</h1>
+                        <h1>IMC</h1>
                     </div>
                     <div class="content">
                         <h1>Changed the credential</h1>
@@ -232,16 +232,16 @@ class Profile extends Database {
 
                         Dear '.$user['firstname'].' '.$user['lastname'].',<br>
 
-                        You have successfully modified your user. Your new password is now [new_password]. You can now log in to your account using this new password.<br><br>
+                        You have successfully modified your user profile. Your credential are well updated. You can now log in to your account using this new password.<br><br>
 
-                        If you have any trouble logging in, please contact our support team at support@scm.com <br><br>
+                        If you have any trouble logging in, please contact our support team at support@imc.com <br><br>
 
                         Best regards,<br>
-                        [SMC - Security support] </p>
+                        [IMC - Security support] </p>
 
                         </div>
                     <div class="footer">
-                        <p>&copy; '.date('Y').' SMC. All rights reserved.</p>
+                        <p>&copy; '.date('Y').' IMC. All rights reserved.</p>
                     </div>
                 </div>
             </body>
@@ -267,7 +267,7 @@ if (isset($_GET['role']) && isset($_GET['role']) == "saveUser") {
         echo "<div class='alert alert-danger'><i class='fa-solid fa-circle-exclamation'></i> {$profileObject->getError()}</div>";
     }
     else {
-        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Email link is already sent !</div>";
+        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Cofnrimation email is already sent !</div>";
     }
 }
 
@@ -278,6 +278,6 @@ if (isset($_GET['action']) && isset($_GET['action']) == "savePass") {
         echo "<div class='alert alert-danger'><i class='fa-solid fa-circle-exclamation'></i> {$profileObject->getError()}</div>";
     }
     else {
-        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Email link is already sent !</div>";
+        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Confirmation email is already sent !</div>";
     }
 }

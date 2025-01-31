@@ -53,7 +53,7 @@ class forgotPassword extends Database{
     }
 
     public function creatingLink($email, $token, $generated_time){
-        $link = "http://localhost/serge/ControlPanel/authenticate/reset-password?token=$token&time=$generated_time";
+        $link = "http://localhost/IMC/ControlPanel/authenticate/reset-password?token=$token&time=$generated_time";
 
         $this->sendEmail($email, $link);
     }
@@ -69,7 +69,7 @@ class forgotPassword extends Database{
 	        $mail->Port = '465';
 
 
-            $mail->setFrom($this->userEmail, 'SMC - Security Support');
+            $mail->setFrom($this->userEmail, 'IMC - Security Support');
             $mail->addAddress($email, 'Dear User');
             $mail->isHTML(true);
             $mail->Subject = "Forgot Password link";
@@ -152,7 +152,7 @@ class forgotPassword extends Database{
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>SMC</h1>
+                        <h1>IMC</h1>
                     </div>
                     <div class="content">
                         <h1>Forgot Password</h1>
@@ -162,7 +162,7 @@ class forgotPassword extends Database{
 
                     </div>
                     <div class="footer">
-                        <p>&copy; '.date('Y').' SMC. All rights reserved.</p>
+                        <p>&copy; '.date('Y').' IMC. All rights reserved.</p>
                     </div>
                 </div>
             </body>
@@ -206,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "<div class='alert alert-danger'><i class='fa-solid fa-circle-exclamation'></i> {$functionObject->getError()}</div>";
     }
     else {
-        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Email link is already sent !</div>";
+        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Confirmation email is already sent !</div>";
     }
 }
 

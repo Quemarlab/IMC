@@ -20,8 +20,8 @@ class Email extends Database{
 	        $mail->SMTPSecure = 'ssl';
 	        $mail->Port = '465';
 
-	        $mail->setFrom($this->userEmail);
-	        $mail->addAddress($email);
+	        $mail->setFrom($this->userEmail, 'IMC - Contact');
+	        $mail->addAddress($email,'Dear User');
 	        $mail->isHTML(true);
 
 	        $mail->Subject = "Confirmation Subcription";
