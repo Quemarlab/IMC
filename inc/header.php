@@ -124,17 +124,10 @@
                                 <a href="news">News</a>
                             </li>
                             <li class="menu-item">
-<<<<<<< HEAD
-                                <a href="contact">Contact</a>
+                                <a href="gallery">Gallery</a>
                             </li>
                             <li class="menu-item">
-                                <a href="gallery">Gallery</a>
-=======
                                 <a href="contact">Contact</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="gallery">Gallery</a>
->>>>>>> 86e32593c841bf59336d3a7a441a67bf07e23163
                             </li>
                         </ul>
                     </div><!-- end of nav-collapse -->
