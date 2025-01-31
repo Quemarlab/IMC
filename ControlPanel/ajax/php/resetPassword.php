@@ -21,7 +21,7 @@ class resetPassword extends Database{
 	        $mail->Port = '465';
 
 
-            $mail->setFrom($this->userEmail, 'SMC - Security Support');
+            $mail->setFrom($this->userEmail, 'IMC - Security Support');
             $mail->addAddress($email, 'Dear User');
             $mail->isHTML(true);
             $mail->Subject = "Forgot Password link";
@@ -114,7 +114,7 @@ class resetPassword extends Database{
 
                         You have successfully reset your password. Your new password is now [new_password]. You can now log in to your account using this new password.<br><br>
 
-                        If you have any trouble logging in, please contact our support team at support@scm.com <br><br>
+                        If you have any trouble logging in, please contact our support team at support@icm.com <br><br>
 
                         Best regards,<br>
                         [SMC - Security support] </p>
@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "<div class='alert alert-danger'><i class='fa-solid fa-circle-exclamation'></i> {$functionObject->getError()}</div>";
     }
     else {
-        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i> Email link is already sent !</div>";
+        echo "<div class='alert alert-success'><i class='fa-solid fa-envelope-circle-check'></i>Confirmation Email is already sent !</div>";
     }
 }
 ?>
