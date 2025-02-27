@@ -155,8 +155,8 @@ require 'inc/header.php';
         <div class="row">
             <div class="col col-lg-9">
                 <div class="section-title">
-                    <span>Our history</span>
-                    <h2>Know Our History</h2>
+                    <span>Milestone</span>
+                    <h2>Know Our Achivements</h2>
                 </div>
             </div>
         </div>
@@ -164,31 +164,27 @@ require 'inc/header.php';
             <div class="col col-xs-12">
                 <div class="history-grids clearfix">
                     <div class="grid">
-                        <span class="date">June 2016</span>
-                        <h3>Started the company</h3>
-                        <p>Pitifully thin compared with the size of the rest of him, waved about helplessly as he
-                            looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human
+                        <span class="date">First</span>
+                        <h3>Processing Plant</h3>
+                        <p>In order to transition from traditional mineral processing methods, IMC Ltd, in collaboration with the Rwanda Mines, Petroleum, and Gas Board (RMB) and the Rwanda Green Fund (Fonerwa), has launched a project that will help establish a mineral processing plant within IMC Ltd.
                         </p>
                     </div>
                     <div class="grid">
-                        <span class="date">July 2017</span>
-                        <h3>Add 20 new worker</h3>
-                        <p>Pitifully thin compared with the size of the rest of him, waved about helplessly as he
-                            looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human
+                        <span class="date">Second</span>
+                        <h3>Production</h3>
+                        <p>IMC Ltd mines minerals such as Cassiterite and Coltan. Cassiterite accounts for 70%. Coltan is 30%. Cassiterite has a quality of 55-56% Sn. Coltan has a quality of 25-35% Ta2O5. The monthly production is between 14 and 14.5 tons of a mixture of cassiterite and coltan.
                         </p>
                     </div>
                     <div class="grid">
-                        <span class="date">Feb 2018</span>
-                        <h3>Open 15 new branch</h3>
-                        <p>Pitifully thin compared with the size of the rest of him, waved about helplessly as he
-                            looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human
+                        <span class="date">Third</span>
+                        <h3>Enviroment Conservation</h3>
+                        <p>We have planted 45,000 trees over an area of 120 hectares. We have rehabilitated land over an area of 60 hectares. We have constructed anti-erosion terraces over an area of 50 hectares. We have 25 dams that help conserve water used in mining, preventing it from damaging buffer zones. We have a nursery with about 10,000 tree seedlings that will be planted this year, 2025.
                         </p>
                     </div>
                     <div class="grid">
-                        <span class="date">March 2018</span>
-                        <h3>Reached the first milestone</h3>
-                        <p>Pitifully thin compared with the size of the rest of him, waved about helplessly as he
-                            looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human
+                        <span class="date">Fourth</span>
+                        <h3>Collaborate with authorities</h3>
+                        <p>IMC Ltd collaborates with local authorities to repair and construct bridges. IMC Ltd collaborates with local authorities to create roads connecting villages; for example, the 5 km road connecting Nyarusange village to Gasharu. IMC Ltd, in collaboration with local authorities, pays health insurance (Mutuelle de Santé) for the vulnerable. IMC Ltd built two houses for two vulnerable residents in the Muhanga district. IMC Ltd participates in community work (Umuganda). IMC Ltd helped Kabacuzi sector to repair the Kabacuzi genocide memorial site for the genocide against the Tutsi. In collaboration with Kayumbu sector, each of our employees saves for their future with Ejo Heza.
                         </p>
                     </div>
                 </div>
@@ -214,32 +210,26 @@ require 'inc/header.php';
                 <div class="testimonials-grids testimonials-slider">
                     <div class="grid">
                         <div class="quote">
-                            <p>It wasn't a dream. His room, a proper human room although a little too small, lay
-                                peacefully between its four familiar walls. A collection of textile samples lay spread
-                                out on the table Samsa was a travelling salesman.A collection of textile samples lay
-                                spread out on the table Samsa was a travelling salesman.</p>
+                            <p>Welcome to IMC Ltd, where we are committed to sustainable and responsible mineral exploration. Our dedication to environmental conservation and community welfare drives us to innovate and excel in the mining industry. We take pride in our collaboration with local authorities and stakeholders to create lasting value for our society. Thank you for being a part of our journey towards a brighter future.</p>
                         </div>
                         <div class="client-info">
                             <div class="client-pic">
                                 <img src="assets/images/testimonials/img-1.jpg" alt>
                             </div>
-                            <h4>Takla Besu</h4>
-                            <span>CEO of Takla group</span>
+                            <h4>Sytivine DUSHIMIMANA</h4>
+                            <span>Managing Director</span>
                         </div>
                     </div>
                     <div class="grid">
                         <div class="quote">
-                            <p>It wasn't a dream. His room, a proper human room although a little too small, lay
-                                peacefully between its four familiar walls. A collection of textile samples lay spread
-                                out on the table Samsa was a travelling salesman.A collection of textile samples lay
-                                spread out on the table Samsa was a travelling salesman.</p>
+                            <p>At IMC Ltd, we prioritize excellence in all aspects of our operations, from mineral exploration to environmental stewardship. Our team is passionate about delivering high-quality minerals while ensuring the well-being of our communities and the environment. We are excited to continue our mission of growth and sustainability, and we look forward to achieving new milestones together with our partners and clients.</p>
                         </div>
                         <div class="client-info">
                             <div class="client-pic">
-                                <img src="assets/images/testimonials/img-1.jpg" alt>
+                                <img src="assets/images/team/img-2.jpg" alt>
                             </div>
-                            <h4>Takla Besu</h4>
-                            <span>CEO of Takla group</span>
+                            <h4>Serge NSENGIMANA</h4>
+                            <span>General Manager</span>
                         </div>
                     </div>
                 </div>
@@ -287,8 +277,8 @@ require 'inc/header.php';
                             <img src="assets/images/team/img-1.jpg" alt>
                         </div>
                         <div class="details">
-                            <h3>Takler Borovi</h3>
-                            <span>Founder</span>
+                            <h3>Felix</h3>
+                            <span>Head of Exploration</span>
                         </div>
                     </div>
                 </div>
