@@ -10,7 +10,7 @@
     <meta name="author" content="irstheme">
 
     <!-- Page Title -->
-    <title>IMC - Geology Site</title>
+    <title>Interafrican Mining Corporation</title>
 
     <!-- Icon fonts -->
     <link href="assets/css/themify-icons.css" rel="stylesheet">
