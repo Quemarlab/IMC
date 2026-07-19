@@ -5,7 +5,7 @@ class Database
     private $server = "localhost";
     private $user = "root";
     private $pass = "";
-    private $dbname = "imc";
+    private $dbname = "ym";
     public $userEmail;
     public $userPassword;
     protected $con;
