@@ -1,20 +1,58 @@
-# Set custom error page for 404 errors
-ErrorDocument 404 /404.php
+# Young Masters LTD — Apache configuration
+Options -Indexes -MultiViews
+DirectoryIndex index.php
 
-# Hide .php extension
+<IfModule mod_rewrite.c>
 RewriteEngine On
+
+# Never serve internals or dotfiles (except .well-known)
+RewriteRule ^(app|database|storage)(/|$) - [F,L]
+RewriteRule (^|/)\.(?!well-known) - [F,L]
+
+# Pretty URLs for detail pages
+RewriteRule ^services/([A-Za-z0-9-]+)/?$ service.php?slug=$1 [L,QSA]
+RewriteRule ^projects/([A-Za-z0-9-]+)/?$ project.php?slug=$1 [L,QSA]
+RewriteRule ^news/([A-Za-z0-9-]+)/?$ article.php?slug=$1 [L,QSA]
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+RewriteRule ^robots\.txt$ robots.php [L]
+
+# Hide the .php extension
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([^\.]+)/?$ $1.php [L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
 
-# Allow photos to be opened in browser
-# Exclude images from this rule
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_URI} !\.(jpe?g|png|gif)$ [NC]
-RewriteRule ^ - [L]
+# Anything that does not exist renders the branded 404 page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ 404.php [L]
+</IfModule>
 
-# Rewrite index.php to SRG/
-#Alias /SRG /index.php
+ErrorDocument 403 "Forbidden"
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' https://cdn.jsdelivr.net; frame-src https://www.google.com https://www.youtube.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    # Uncomment once the site is served over HTTPS:
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Compression + caching (asset URLs are versioned with ?v=mtime)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/xml
+</IfModule>
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php81” package as the default “PHP” programming language.

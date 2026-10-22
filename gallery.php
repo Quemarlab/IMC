@@ -1,74 +1,42 @@
 <?php
-require 'inc/header.php';
+$page = ['title' => 'Gallery', 'description' => 'Photos from training sessions, site visits and projects by Young Masters LTD.', 'nav' => 'gallery'];
+require __DIR__ . '/inc/header.php';
+
+use YM\Repositories\GalleryItems;
+
+$category = input('category');
+$pg = GalleryItems::paginate([
+    'public' => true, 'page' => (int) input('page', '1'), 'per' => 24,
+    'where' => $category !== '' ? 'category = ?' : null, 'params' => $category !== '' ? [$category] : [],
+]);
+$categories = GalleryItems::categories();
+
+$hero = ['title' => 'Gallery', 'lead' => 'Moments from training sessions, site visits and projects.', 'crumbs' => [['Gallery', null]]];
+include __DIR__ . '/inc/page-hero.php';
 ?>
-
-<!-- start page-title -->
-<section class="page-title">
+<section class="section">
     <div class="container">
-        <div class="row">
-            <div class="col col-xs-12">
-                <h2>Gallery</h2>
-                <ol class="breadcrumb">
-                    <li><a href="../Serge/">Home</a></li>
-                    <li>Gallery</li>
-                </ol>
+        <?php if ($categories): ?>
+            <div class="filter-pills">
+                <a href="<?= url('gallery') ?>" class="<?= $category === '' ? 'active' : '' ?>">All</a>
+                <?php foreach ($categories as $c): ?>
+                    <a href="?category=<?= rawurlencode($c) ?>" class="<?= $category === $c ? 'active' : '' ?>"><?= e($c) ?></a>
+                <?php endforeach; ?>
             </div>
-        </div> <!-- end row -->
-    </div> <!-- end container -->
-</section>
-<!-- end page-title -->
+        <?php endif; ?>
 
-<section class="feature-projects section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col col-lg-10 col-lg-offset-1">
-                <div class="section-title-s3">
-                    <span>New Uploaded gallery</span>
-                    <h2>Featured Gallery</h2>
-                    <p>Wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls collection of textile samples lay spread out on the table Samsa was a travelling salesman.</p>
-                </div>
+        <?php if (!$pg['items']): ?>
+            <div class="empty-state"><i class="bi bi-images"></i>Photos will appear here soon.</div>
+        <?php else: ?>
+            <div class="gallery-grid">
+                <?php foreach ($pg['items'] as $g): ?>
+                    <a href="<?= e(upload_url('gallery', $g['image'])) ?>" class="glightbox" data-gallery="ym" data-title="<?= e($g['title']) ?>">
+                        <img src="<?= e(upload_url('gallery', $g['image'])) ?>" alt="<?= e($g['title'] ?: 'Gallery photo') ?>" loading="lazy">
+                    </a>
+                <?php endforeach; ?>
             </div>
-        </div>
+            <?php include __DIR__ . '/inc/pagination.php'; ?>
+        <?php endif; ?>
     </div>
 </section>
-<!-- Gallery Section -->
-<section id="gallery" class="gallery section">
-
-<div class="container" data-aos="fade-up" data-aos-delay="100">
-
-  <div class="row gy-4 justify-content-center">
-  <?php
-    $gallery = $clintObjects->getGallery();
-    $count = 1;
-    if (!empty($gallery)) {
-        foreach ($gallery as $gal) {
-            ?>
-    <div class="col-xl-3 col-lg-4 col-md-6">
-      <div class="gallery-item h-100">
-        <img src="ControlPanel/upload/gallery/<?php echo $gal['file'] ?>" class="img-fluid" alt="">
-        <div class="gallery-links d-flex align-items-center justify-content-center">
-          <a href="ControlPanel/upload/gallery/<?php echo $gal['file'] ?>" title="SMC - Gallery <?php echo $count ?>" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-        </div>
-      </div>
-    </div>
-    <?php
-        $count++;
-        }
-    }
-    else {
-        echo "<div class='alert alert-warning'>No Gallery Found</div>";
-    }
-    ?>
-                    
-  </div>
-
-</div>
-
-</section><!-- /Gallery Section -->
-<!-- end team-section -->
-
-
-
-<?php
-require 'inc/footer.php';
-?>
+<?php require __DIR__ . '/inc/footer.php'; ?>

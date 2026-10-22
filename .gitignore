@@ -1,0 +1,13 @@
+# Secrets & local config
+.env
+
+# Runtime data
+storage/logs/*
+!storage/logs/.gitkeep
+ControlPanel/upload/*/*
+!ControlPanel/upload/*/.gitkeep
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.idea/

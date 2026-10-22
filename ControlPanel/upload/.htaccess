@@ -1,0 +1,15 @@
+# Uploads are static files only — never execute anything from here.
+Options -Indexes -ExecCGI
+<FilesMatch "(?i)\.(php\d?|phtml|phar|pl|py|cgi|sh|htaccess)$">
+    Require all denied
+</FilesMatch>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+AddType text/plain .php .phtml
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "default-src 'none'; img-src 'self'; style-src 'unsafe-inline'"
+</IfModule>

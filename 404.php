@@ -1,46 +1,18 @@
 <?php
-require 'inc/header.php';
+http_response_code(404);
+$page = ['title' => 'Page not found', 'robots' => 'noindex,follow'];
+require __DIR__ . '/inc/header.php';
 ?>
-<!-- start page-title -->
-<section class="page-title">
-    <div class="container">
-        <div class="row">
-            <div class="col col-xs-12">
-                <h2>404</h2>
-                <ol class="breadcrumb">
-                    <li><a href="../Serge/">Home</a></li>
-                    <li>404</li>
-                </ol>
-            </div>
-        </div> <!-- end row -->
-    </div> <!-- end container -->
+<section class="section">
+    <div class="container text-center" style="max-width:640px">
+        <div class="display-title" style="font-size:7rem;color:var(--ym-gold);line-height:1">404</div>
+        <h1 class="h2 mt-3">We couldn't find that page</h1>
+        <p class="my-4">The link may be broken or the page may have moved. Try one of these instead:</p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a class="btn btn-gold" href="<?= url() ?>">Homepage</a>
+            <a class="btn btn-dark-ym" href="<?= url('services') ?>">Our services</a>
+            <a class="btn btn-outline-dark" href="<?= url('contact') ?>">Contact us</a>
+        </div>
+    </div>
 </section>
-<!-- end page-title -->
-
-
-<!-- start error-404-section -->
-<section class="error-404-section section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-10 col-md-offset-1">
-                <div class="content">
-                    <h2>404</h2>
-                    <h3>The page you are looking for does not exist.</h3>
-                    <p>We’re sorry but we can’t seem to find the page you requested. This might be because you have typed the web address incorrectly.</p>
-                    <a href="index-2.html" class="theme-btn-s2">Go back home</a>
-
-                    <div class="icon">
-                        <i class="ti-microphone"></i>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- end row -->
-    </div> <!-- end container -->
-</section>
-<!-- end error-404-section -->
-
-
-
-<?php
-require 'inc/footer.php';
-?>
+<?php require __DIR__ . '/inc/footer.php'; ?>

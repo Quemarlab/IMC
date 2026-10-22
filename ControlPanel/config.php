@@ -1,24 +1,6 @@
 <?php
-session_start();
-class Database
-{
-    private $server = "localhost";
-    private $user = "root";
-    private $pass = "";
-    private $dbname = "ym";
-    public $userEmail;
-    public $userPassword;
-    protected $con;
-
-    public function __construct()
-    {
-        try {
-            $this->userEmail = "usabuwerakendlyquemar@gmail.com";
-            $this->userPassword = "ajqevsxcgdtxqkra";
-            $this->con = new PDO("mysql:host=$this->server;dbname=$this->dbname", $this->user, $this->pass);
-            $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "The database connection refused to be established due to" . $e->getMessage();
-        }
-    }
-}
+// Deprecated. Credentials now live in the git-ignored /.env file and are read by app/bootstrap.php.
+// The legacy ajax/, manage/ and authenticate/ folders that included this file are replaced by the
+// new admin panel (login, dashboard, resource, messages…) and can be deleted.
+http_response_code(410);
+exit('Gone.');

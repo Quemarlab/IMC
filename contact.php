@@ -1,111 +1,45 @@
 <?php
-require 'inc/header.php';
+$page = ['title' => 'Contact us', 'description' => 'Get in touch with Young Masters LTD for mining consultancy, OHS, environmental and training services in Rwanda.', 'nav' => 'contact'];
+require __DIR__ . '/inc/header.php';
+
+$hero = ['title' => 'Get in touch', 'lead' => 'Tell us about your operation — we usually reply within one working day.', 'crumbs' => [['Contact', null]]];
+include __DIR__ . '/inc/page-hero.php';
+$map = setting('map_embed');
 ?>
-
-<!-- start page-title -->
-<section class="page-title">
+<section class="section">
     <div class="container">
-        <div class="row">
-            <div class="col col-xs-12">
-                <h2>Contact</h2>
-                <ol class="breadcrumb">
-                    <li><a href="../Serge/">Home</a></li>
-                    <li>Contact</li>
-                </ol>
-            </div>
-        </div> <!-- end row -->
-    </div> <!-- end container -->
-</section>
-<!-- end page-title -->
-
-
-<!-- start contact-pg-section -->
-<section class="contact-pg-section section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="section-title-s2">
-                    <span>Our contact info</span>
-                    <h2>Get in touch with us</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col col-lg-6">
-                <div class="contact-form">
-                    <form method="post" class="contact-validation-active" id="contact-form-s2">
-                        <div class="half-col">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name">
-                        </div>
-                        <div class="half-col">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-                        </div>
-                        <div class="half-col">
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
-                        </div>
-                        <div class="half-col">
-                            <input type="text" name="address" id="address" class="form-control" placeholder="Address">
-                        </div>
-                        <div>
-                            <textarea class="form-control" name="note" id="note" placeholder="Description..."></textarea>
-                        </div>
-                        <div class="submit-btn-wrapper">
-                            <button type="submit" class="theme-btn-s3">Appointment</button>
-                            <div id="loader">
-                                <i class="ti-reload"></i>
-                            </div>
-                        </div>
-                        <div class="clearfix error-handling-messages">
-                            <div id="success">Thank you</div>
-                            <div id="error"> Error occurred while sending email. Please try again later. </div>
+        <div class="row g-5">
+            <div class="col-lg-7" data-aos="fade-up">
+                <div class="contact-card">
+                    <h2 class="h3 mb-4">Send us a message</h2>
+                    <form class="js-ajax-form" action="<?= url('api/contact.php') ?>" method="post" novalidate>
+                        <?= csrf_field() ?>
+                        <div class="hp-field" aria-hidden="true"><label>Leave empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label" for="name">Full name *</label><input class="form-control" id="name" name="name" required maxlength="120" autocomplete="name"></div>
+                            <div class="col-md-6"><label class="form-label" for="email">Email *</label><input class="form-control" type="email" id="email" name="email" required maxlength="190" autocomplete="email"></div>
+                            <div class="col-md-6"><label class="form-label" for="phone">Phone</label><input class="form-control" id="phone" name="phone" maxlength="40" autocomplete="tel"></div>
+                            <div class="col-md-6"><label class="form-label" for="subject">Subject</label><input class="form-control" id="subject" name="subject" maxlength="190" value="<?= e(input('subject')) ?>"></div>
+                            <div class="col-12"><label class="form-label" for="body">How can we help? *</label><textarea class="form-control" id="body" name="body" rows="6" required minlength="10" maxlength="5000"></textarea></div>
+                            <div class="col-12"><button class="btn btn-gold btn-lg" type="submit">Send message</button></div>
+                            <div class="col-12"><div class="form-status" role="status"></div></div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col col-lg-6">
-                <div class="info-box-outer">
-                    <div class="info-box">
-                        <div class="grid">
-                            <h3>Address</h3>
-                            <p>Kicukiro, Kigali-RWANDA</p>
-                        </div>
-                        <div class="grid">
-                            <h3>Phone</h3>
-                            <p>+250 783 582 953</p>
-                        </div>
-                        <div class="grid">
-                            <h3>Email</h3>
-                            <p>info@imc.rw, &nbsp; manager@imc.rw</p>
-                        </div>
-                        <div class="grid">
-                            <ul class="social">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                                <li><a href="#"><i class="ti-pinterest"></i></a></li>
-                                <li><a href="#"><i class="ti-vimeo-alt"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                <span class="eyebrow">Contact details</span>
+                <h2 class="h3 mt-3 mb-3">We'd love to hear from you</h2>
+                <div class="info-item"><span class="ic"><i class="bi bi-geo-alt"></i></span><div><strong>Address</strong><?= e(setting('address')) ?></div></div>
+                <div class="info-item"><span class="ic"><i class="bi bi-telephone"></i></span><div><strong>Phone</strong><a href="tel:<?= e(preg_replace('/[^+\d]/', '', setting('phone'))) ?>"><?= e(setting('phone')) ?></a></div></div>
+                <div class="info-item"><span class="ic"><i class="bi bi-envelope"></i></span><div><strong>Email</strong><a href="mailto:<?= e(setting('email')) ?>"><?= e(setting('email')) ?></a></div></div>
+                <div class="info-item"><span class="ic"><i class="bi bi-clock"></i></span><div><strong>Working hours</strong><?= e(setting('hours')) ?></div></div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255203.55383056725!2d29.962431609320504!3d-1.9297626221893125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0xf32b36a5411d0bc8!2sKigali!5e0!3m2!1sen!2srw!4v1719256568711!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end container -->
+        <?php if ($map && str_starts_with($map, 'https://www.google.com/maps/embed')): ?>
+            <iframe class="map-frame mt-5" src="<?= e($map) ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing our location"></iframe>
+        <?php endif; ?>
+    </div>
 </section>
-<!-- end contact-pg-section -->
-
-
-
-
-<?php
-require 'inc/footer.php';
-?>
+<?php require __DIR__ . '/inc/footer.php'; ?>

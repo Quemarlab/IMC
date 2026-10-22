@@ -1,143 +1,97 @@
-<?php require 'inc/handler.php'; ?>
+<?php
+/**
+ * Public layout — top. Pages set $page before including:
+ *   $page = ['title' => '…', 'description' => '…', 'nav' => 'about', 'image' => '…', 'robots' => 'noindex'];
+ */
+require_once __DIR__ . '/../app/bootstrap.php';
+
+$page = ($page ?? []) + ['title' => '', 'description' => '', 'nav' => '', 'image' => '', 'robots' => 'index,follow', 'type' => 'website'];
+$company = setting('company_name');
+$fullTitle = $page['title'] ? $page['title'] . ' | ' . $company : $company . ' — ' . setting('tagline');
+$description = $page['description'] ?: setting('about_short');
+$ogImage = $page['image'] ?: site_origin() . parse_url(asset('img/hero-training.jpg'), PHP_URL_PATH);
+$canonical = abs_url(ltrim(substr(strtok($_SERVER['REQUEST_URI'] ?? '/', '#'), strlen(base_path())), '/'));
+
+$nav = [
+    'home' => ['', 'Home'],
+    'about' => ['about', 'About'],
+    'services' => ['services', 'Services'],
+    'projects' => ['projects', 'Projects'],
+    'news' => ['news', 'News'],
+    'gallery' => ['gallery', 'Gallery'],
+    'contact' => ['contact', 'Contact'],
+];
+$socials = ['linkedin' => 'bi-linkedin', 'facebook' => 'bi-facebook', 'twitter' => 'bi-twitter-x', 'instagram' => 'bi-instagram', 'youtube' => 'bi-youtube'];
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Meta Tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="irstheme">
+    <title><?= e($fullTitle) ?></title>
+    <meta name="description" content="<?= e(excerpt($description, 160)) ?>">
+    <meta name="robots" content="<?= e($page['robots']) ?>">
+    <meta name="theme-color" content="#1d2124">
+    <link rel="canonical" href="<?= e($canonical) ?>">
 
-    <!-- Page Title -->
-    <title>Interafrican Mining Corporation</title>
+    <meta property="og:type" content="<?= e($page['type']) ?>">
+    <meta property="og:site_name" content="<?= e($company) ?>">
+    <meta property="og:title" content="<?= e($fullTitle) ?>">
+    <meta property="og:description" content="<?= e(excerpt($description, 200)) ?>">
+    <meta property="og:url" content="<?= e($canonical) ?>">
+    <meta property="og:image" content="<?= e($ogImage) ?>">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Icon fonts -->
-    <link href="assets/css/themify-icons.css" rel="stylesheet">
-    <link href="assets/css/flaticon.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="<?= asset('img/favicon.png') ?>">
+    <link rel="apple-touch-icon" href="<?= asset('img/logo-mark.png') ?>">
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Plugins for this template -->
-    <link href="assets/css/animate.css" rel="stylesheet">
-    <link href="assets/css/owl.carousel.css" rel="stylesheet">
-    <link href="assets/css/owl.theme.css" rel="stylesheet">
-    <link href="assets/css/slick.css" rel="stylesheet">
-    <link href="assets/css/slick-theme.css" rel="stylesheet">
-    <link href="assets/css/owl.transitions.css" rel="stylesheet">
-    <link href="assets/css/jquery.fancybox.css" rel="stylesheet">
-    <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
-    <link href="assets/js/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/js/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/js/aos/aos.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link rel="icon" href="ControlPanel/assets/logo/logo.png">
-
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="<?= asset('vendor/bootstrap/bootstrap.min.css') ?>" rel="stylesheet">
+    <link href="<?= asset('vendor/bootstrap-icons/bootstrap-icons.min.css') ?>" rel="stylesheet">
+    <link href="<?= asset('vendor/aos/aos.css') ?>" rel="stylesheet">
+    <link href="<?= asset('vendor/glightbox/glightbox.min.css') ?>" rel="stylesheet">
+    <link href="<?= asset('css/site.css') ?>" rel="stylesheet">
+    <?= $page['head'] ?? '' ?>
 </head>
-
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- start page-wrapper -->
-    <div class="page-wrapper">
-
-        <!-- start preloader -->
-        <div class="preloader">
-            <div class="load">
-                <div class="gear one">
-                    <svg viewbox="0 0 100 100" fill="#94DDFF">
-                        <path d="M97.6,55.7V44.3l-13.6-2.9c-0.8-3.3-2.1-6.4-3.9-9.3l7.6-11.7l-8-8L67.9,20c-2.9-1.7-6-3.1-9.3-3.9L55.7,2.4H44.3l-2.9,13.6      c-3.3,0.8-6.4,2.1-9.3,3.9l-11.7-7.6l-8,8L20,32.1c-1.7,2.9-3.1,6-3.9,9.3L2.4,44.3v11.4l13.6,2.9c0.8,3.3,2.1,6.4,3.9,9.3      l-7.6,11.7l8,8L32.1,80c2.9,1.7,6,3.1,9.3,3.9l2.9,13.6h11.4l2.9-13.6c3.3-0.8,6.4-2.1,9.3-3.9l11.7,7.6l8-8L80,67.9      c1.7-2.9,3.1-6,3.9-9.3L97.6,55.7z M50,65.6c-8.7,0-15.6-7-15.6-15.6s7-15.6,15.6-15.6s15.6,7,15.6,15.6S58.7,65.6,50,65.6z">
-                        </path>
-                    </svg>
-                </div>
-                <div class="gear two">
-                    <svg viewbox="0 0 100 100" fill="#0d6efd">
-                        <path d="M97.6,55.7V44.3l-13.6-2.9c-0.8-3.3-2.1-6.4-3.9-9.3l7.6-11.7l-8-8L67.9,20c-2.9-1.7-6-3.1-9.3-3.9L55.7,2.4H44.3l-2.9,13.6      c-3.3,0.8-6.4,2.1-9.3,3.9l-11.7-7.6l-8,8L20,32.1c-1.7,2.9-3.1,6-3.9,9.3L2.4,44.3v11.4l13.6,2.9c0.8,3.3,2.1,6.4,3.9,9.3      l-7.6,11.7l8,8L32.1,80c2.9,1.7,6,3.1,9.3,3.9l2.9,13.6h11.4l2.9-13.6c3.3-0.8,6.4-2.1,9.3-3.9l11.7,7.6l8-8L80,67.9      c1.7-2.9,3.1-6,3.9-9.3L97.6,55.7z M50,65.6c-8.7,0-15.6-7-15.6-15.6s7-15.6,15.6-15.6s15.6,7,15.6,15.6S58.7,65.6,50,65.6z">
-                        </path>
-                    </svg>
-                </div>
-                <div class="gear three">
-                    <svg viewbox="0 0 100 100" fill="#0a172b">
-                        <path d="M97.6,55.7V44.3l-13.6-2.9c-0.8-3.3-2.1-6.4-3.9-9.3l7.6-11.7l-8-8L67.9,20c-2.9-1.7-6-3.1-9.3-3.9L55.7,2.4H44.3l-2.9,13.6      c-3.3,0.8-6.4,2.1-9.3,3.9l-11.7-7.6l-8,8L20,32.1c-1.7,2.9-3.1,6-3.9,9.3L2.4,44.3v11.4l13.6,2.9c0.8,3.3,2.1,6.4,3.9,9.3      l-7.6,11.7l8,8L32.1,80c2.9,1.7,6,3.1,9.3,3.9l2.9,13.6h11.4l2.9-13.6c3.3-0.8,6.4-2.1,9.3-3.9l11.7,7.6l8-8L80,67.9      c1.7-2.9,3.1-6,3.9-9.3L97.6,55.7z M50,65.6c-8.7,0-15.6-7-15.6-15.6s7-15.6,15.6-15.6s15.6,7,15.6,15.6S58.7,65.6,50,65.6z">
-                        </path>
-                    </svg>
-                </div>
-            </div>
+<div class="topbar d-none d-md-block py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <a href="tel:<?= e(preg_replace('/[^+\d]/', '', setting('phone'))) ?>" class="me-4"><i class="bi bi-telephone"></i><?= e(setting('phone')) ?></a>
+            <a href="mailto:<?= e(setting('email')) ?>" class="me-4"><i class="bi bi-envelope"></i><?= e(setting('email')) ?></a>
+            <span><i class="bi bi-geo-alt"></i><?= e(setting('address')) ?></span>
         </div>
-        <!-- end preloader -->
+        <div class="social">
+            <?php foreach ($socials as $key => $icon): if (setting($key)): ?>
+                <a href="<?= e(setting($key)) ?>" target="_blank" rel="noopener" aria-label="<?= e(ucfirst($key)) ?>"><i class="bi <?= $icon ?>"></i></a>
+            <?php endif; endforeach; ?>
+        </div>
+    </div>
+</div>
 
+<header class="site-nav navbar navbar-expand-lg sticky-top py-2" id="siteNav">
+    <div class="container">
+        <a class="navbar-brand" href="<?= url() ?>"><img src="<?= asset('img/logo.png') ?>" alt="<?= e($company) ?>" width="62" height="56"></a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list fs-1 text-dark"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="mainMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <?php foreach ($nav as $key => [$path, $label]): ?>
+                    <li class="nav-item">
+                        <a class="nav-link<?= $page['nav'] === $key ? ' active' : '' ?>" href="<?= url($path) ?>"<?= $page['nav'] === $key ? ' aria-current="page"' : '' ?>><?= e($label) ?></a>
+                    </li>
+                <?php endforeach; ?>
+                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                    <a class="btn btn-gold btn-sm px-4 py-2" href="<?= url('contact') ?>">Request a consultation</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
 
-        <!-- Start header -->
-        <header id="header" class="site-header header-style-2">
-            <div class="topbar">
-                <div class="container">
-                    <div class="row">
-                        <div class="col col-md-10 col-sm-9">
-                            <div class="contact-info">
-                                <ul>
-                                    <li><i class="ti-mobile"></i> Kicukiro, Kigali-RWANDA</li>
-                                    <li><i class="ti-email"></i> info@imc.rw</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col col-md-2 col-sm-3">
-                            <div class="social-icons">
-                                <ul>
-                                    <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                    <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                    <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="ti-pinterest"></i></a></li>
-                                    <li><a href="#"><i class="ti-vimeo-alt"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <nav class="navigation navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="open-btn">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"><img src="ControlPanel/assets/logo/logo.png" alt="IMC logo" style="width: 120px; height: 60px; object-fit: cover"></a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
-                        <button class="close-navbar"><i class="ti-close"></i></button>
-                        <ul class="nav navbar-nav">
-                            <li class="menu-item">
-                                <a href="../imc/">Home</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="about">About</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="project">Projects</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="news">News</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="gallery">Gallery</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="contact">Contact</a>
-                            </li>
-                        </ul>
-                    </div><!-- end of nav-collapse -->
-
-                    <div class="cart-search-contact">
-                        <div class="get-quote">
-                            <a href="contact" class="theme-btn">Get A Quote</a>
-                        </div>
-                    </div>
-                </div><!-- end of container -->
-            </nav>
-        </header>
-        <!-- end of header -->
+<main id="main">

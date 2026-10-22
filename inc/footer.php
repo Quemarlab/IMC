@@ -1,132 +1,84 @@
-<!-- stat cta-s2-section -->
-<section class="cta-s2-section">
+</main>
+
+<?php
+use YM\Repositories\Services;
+
+$footerServices = Services::latest(6);
+$socials = ['linkedin' => 'bi-linkedin', 'facebook' => 'bi-facebook', 'twitter' => 'bi-twitter-x', 'instagram' => 'bi-instagram', 'youtube' => 'bi-youtube'];
+?>
+<section class="newsletter-strip">
     <div class="container">
-        <div class="row">
-            <div class="col col-sm-9">
-                <h3>If you need any further assistance, please contact with us</h3>
+        <div class="row align-items-center g-3">
+            <div class="col-lg-6">
+                <h3>Get mining safety &amp; compliance insights in your inbox</h3>
             </div>
-            <div class="col col-sm-3">
-                <div class="contact-btn">
-                    <a href="contact" class="theme-btn-s4">Contact With Us</a>
-                </div>
+            <div class="col-lg-6">
+                <form class="js-ajax-form" action="<?= url('api/newsletter.php') ?>" method="post" novalidate>
+                    <?= csrf_field() ?>
+                    <div class="hp-field" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+                    <div class="input-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your email address" aria-label="Email address" required>
+                        <button class="btn btn-dark-ym" type="submit">Subscribe</button>
+                    </div>
+                    <div class="form-status mt-2" role="status"></div>
+                </form>
             </div>
         </div>
     </div>
 </section>
-<!-- end cta-s2-section -->
- 
-<!-- start newsletter-section -->
-<section class="newsletter-section">
-    <h2 class="hidden">Newsletter</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="newsletter">
-                    <div class="newsletter-form">
-                        <form action="ControlPanel/mailerService/newsletter" method="POST" class="php-email-form">
-                            <input type="text" class="form-control" name="email" placeholder="Subscribe Newsletter (Enter Email Address)">
-                            <button type="submit"><i class="ti-email"></i></button>
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end container -->
-</section>
-<!-- end newsletter-section -->
-<!-- start site-footer -->
+
 <footer class="site-footer">
-    <div class="upper-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-4 col-md-3 col-sm-6">
-                    <div class="widget about-widget">
-                        <div class="logo widget-title">
-                            <img src="ControlPanel/assets/logo/logo.png" alt="IMC logo" style="height: 100px">
-                        </div>
-                        <p>IMC Ltd is a leading company in the geographical mining sector, dedicated to sustainable practices and innovative solutions.</p>
-                        <div class="social-icons">
-                            <ul>
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                                <li><a href="#"><i class="ti-pinterest"></i></a></li>
-                                <li><a href="#"><i class="ti-vimeo-alt"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-lg-2 col-md-3 col-sm-6">
-                    <div class="widget link-widget">
-                        <div class="widget-title">
-                            <h3>Navigation</h3>
-                        </div>
-                        <ul>
-                            <li><a href="about">About us</a></li>
-                            <li><a href="contact">Contact us</a></li>
-                            <li><a href="news">Our News</a></li>
-                            <li><a href="project">Recent Projects</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col col-lg-3 col-md-3 col-sm-6">
-                    <div class="widget link-widget service-link-widget">
-                        <div class="widget-title">
-                            <h3>Our Services</h3>
-                        </div>
-                        <ul>
-                            <li>Coltan Mining</li>
-                            <li>Nyiramugengeri Mining</li>
-                            <li>Consultancy services</li>
-                            <li>Gasegereti Mining</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col col-lg-3 col-md-3 col-sm-6">
-                    <div class="widget contact-widget">
-                        <div class="widget-title">
-                            <h3>Contact Info</h3>
-                        </div>
-                        <ul>
-                            <li>Kicukiro, Kigali-RWANDA</li>
-                            <li><span>Email: </span> info@imc.rw</li>
-                            <li><span>Phone: </span> +250 783 582 953</li>
-                        </ul>
-                    </div>
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <a class="footer-logo" href="<?= url() ?>"><img src="<?= asset('img/logo.png') ?>" alt="<?= e(setting('company_name')) ?>" loading="lazy"></a>
+                <p><?= e(excerpt(setting('about_short'), 190)) ?></p>
+                <div class="social-round mt-3">
+                    <?php foreach ($socials as $key => $icon): if (setting($key)): ?>
+                        <a href="<?= e(setting($key)) ?>" target="_blank" rel="noopener" aria-label="<?= e(ucfirst($key)) ?>"><i class="bi <?= $icon ?>"></i></a>
+                    <?php endif; endforeach; ?>
                 </div>
             </div>
-        </div> <!-- end container -->
-    </div>
-    <div class="lower-footer">
-        <div class="container">
-            <div class="row">
-                <div class="separator"></div>
-                <div class="col col-xs-12">
-                    <p class="copyright">IMC &copy; <?= date('Y') ?></p>
-                    <ul>
-                        <li><a href="about">About Us</a></li>
-                        <li><a href="news">News</a></li>
-                        <li><a href="contact">Contact</a></li>
-                    </ul>
-                </div>
+            <div class="col-6 col-lg-2">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="<?= url('about') ?>">About us</a></li>
+                    <li><a href="<?= url('projects') ?>">Projects</a></li>
+                    <li><a href="<?= url('news') ?>">News</a></li>
+                    <li><a href="<?= url('gallery') ?>">Gallery</a></li>
+                    <li><a href="<?= url('contact') ?>">Contact</a></li>
+                </ul>
             </div>
+            <div class="col-6 col-lg-3">
+                <h4>Services</h4>
+                <ul>
+                    <?php foreach ($footerServices as $s): ?>
+                        <li><a href="<?= url('services/' . $s['slug']) ?>"><?= e($s['title']) ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h4>Get in touch</h4>
+                <ul class="contact-list">
+                    <li><i class="bi bi-geo-alt"></i><span><?= e(setting('address')) ?></span></li>
+                    <li><i class="bi bi-telephone"></i><a href="tel:<?= e(preg_replace('/[^+\d]/', '', setting('phone'))) ?>"><?= e(setting('phone')) ?></a></li>
+                    <li><i class="bi bi-envelope"></i><a href="mailto:<?= e(setting('email')) ?>"><?= e(setting('email')) ?></a></li>
+                    <li><i class="bi bi-clock"></i><span><?= e(setting('hours')) ?></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+            <span>&copy; <?= date('Y') ?> <?= e(setting('company_name')) ?>. All rights reserved.</span>
+            <span><?= e(setting('tagline')) ?></span>
         </div>
     </div>
 </footer>
-<!-- end site-footer -->
-</div>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<button class="to-top" id="toTop" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
-<script src="assets/js/jquery-plugin-collection.js"></script>
-<script src="assets/js/aos/aos.js"></script>
-<script src="assets/js/glightbox/js/glightbox.min.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="ControlPanel/ajax/js/php-mail-form.js"></script>
+<script src="<?= asset('vendor/bootstrap/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?= asset('vendor/aos/aos.js') ?>"></script>
+<script src="<?= asset('vendor/glightbox/glightbox.min.js') ?>"></script>
+<script src="<?= asset('js/site.js') ?>"></script>
 </body>
-
 </html>

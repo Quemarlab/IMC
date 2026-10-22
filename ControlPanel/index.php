@@ -1,10 +1,4 @@
 <?php
-if (!isset($_COOKIE['logintimes'])) {
-    setcookie('logintimes',1,time() + 60 * 60 * 24 * 7);
-}
+require __DIR__ . '/../app/bootstrap.php';
 
-if (!isset($_SESSION['management'])) {
-    header('location: authenticate/');
-} else {
-    header('location: manage/dashboard');
-}
+redirect(admin_url('dashboard'));

@@ -1,407 +1,196 @@
 <?php
-require 'inc/header.php';
+$page = ['nav' => 'home'];
+require __DIR__ . '/inc/header.php';
 
+use YM\Repositories\Posts;
+use YM\Repositories\Projects;
+use YM\Repositories\Services;
+
+$services = Services::latest(6);
+$projects = Projects::latest(3);
+$posts = Posts::latest(3);
+
+$steps = [
+    ['Assess', 'We start on site: understanding your operation, hazards, obligations and the people doing the work.'],
+    ['Plan', 'We turn findings into a clear, prioritised action plan with owners, timelines and measurable targets.'],
+    ['Train & implement', 'Hands-on training and technical support put the plan into everyday practice with your team.'],
+    ['Monitor & improve', 'We track results, support audits and inspections, and keep improving as your operation evolves.'],
+];
 ?>
-<!-- start of hero -->
-<section class="hero hero-slider-wrapper hero-style-2">
-    <div class="pattern">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="hero-slider">
-        <div class="slide">
-            <img src="assets/images/slider/slide-1.jpg" alt class="slider-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 slide-caption">
-                        <div class="slide-subtitle">
-                            <p>Welcome to Interafrican Mining Corporation (IMC)</p>
-                        </div>
-                        <div class="slide-title">
-                            <h2>We are the best mining extraction company in Rwanda </h2>
-                        </div>
-                        <div class="btns">
-                            <a href="about" class="theme-btn">More About Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="slide">
-            <img src="assets/images/slider/slide-2.jpg" alt class="slider-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 slide-caption">
-                        <div class="slide-subtitle">
-                            <p>Welcome to Interafrican Mining Corporation (IMC)</p>
-                        </div>
-                        <div class="slide-title">
-                            <h2>Market driven in mining sector</h2>
-                        </div>
-                        <div class="btns">
-                            <a href="about" class="theme-btn">More About Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide">
-            <img src="assets/images/slider/slide-3.jpg" alt class="slider-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 slide-caption">
-                        <div class="slide-subtitle">
-                            <p>Welcome to Interafrican Mining Corporation (IMC)</p>
-                        </div>
-                        <div class="slide-title">
-                            <h2>The right choice on right time </h2>
-                        </div>
-                        <div class="btns">
-                            <a href="about" class="theme-btn">More About Us</a>
-                        </div>
-                    </div>
+<section class="hero" style="background-image:url('<?= asset('img/hero-training.jpg') ?>')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <span class="eyebrow mb-3" data-aos="fade-up">Mining · OHS · Environment</span>
+                <h1 data-aos="fade-up" data-aos-delay="80">Safer mines. <em>Stronger compliance.</em> Skilled people.</h1>
+                <p class="lead mt-4" data-aos="fade-up" data-aos-delay="160">
+                    <?= e(setting('company_name')) ?> is a Rwanda-based mining consultancy and training company helping operators, cooperatives and institutions achieve safe, productive and environmentally sustainable mining.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4" data-aos="fade-up" data-aos-delay="240">
+                    <a href="<?= url('contact') ?>" class="btn btn-gold btn-lg">Request a consultation</a>
+                    <a href="<?= url('services') ?>" class="btn btn-outline-light-ym btn-lg">Explore our services</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- end of hero slider -->
 
-
-<!-- start features-section -->
-<section class="features-section">
+<section class="hero-pillars">
     <div class="container">
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="features-grids">
-                    <div class="grid">
-                        <div class="icon">
-                            <i class="fi flaticon-expand"></i>
-                        </div>
-                        <h3>Business Insights</h3>
-                        <p>We provide valuable insights into the mining industry, helping stakeholders make informed decisions based on market trends and best practices toward the unthinkable profit.</p>
-                    </div>
-                    <div class="grid">
-                        <div class="icon">
-                            <i class="fi flaticon-3d"></i>
-                        </div>
-                        <h3>Market Research</h3>
-                        <p>Our market research identifies opportunities and challenges in the mining sector, equipping clients with essential knowledge to navigate the evolving landscape.</p>
-                    </div>
-                    <div class="grid">
-                        <div class="icon">
-                            <i class="fi flaticon-gear"></i>
-                        </div>
-                        <h3>Thought leadership</h3>
-                        <p>IMC Ltd shares innovative ideas and perspectives on technologies and sustainable practices, establishing ourselves as a trusted voice in the mining industry.</p>
-                    </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="pillar-card" style="--c:#4a5258">
+                    <span class="ic"><i class="bi bi-gem"></i></span>
+                    <div><h3>Mining expertise</h3><p>Geology, mine planning and compliance grounded in Rwanda's mining reality.</p></div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="pillar-card" style="--c:#d4a017">
+                    <span class="ic"><i class="bi bi-shield-check"></i></span>
+                    <div><h3>Health &amp; safety first</h3><p>Practical OHS systems and training that protect workers and keep sites productive.</p></div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="pillar-card" style="--c:#2f7d32">
+                    <span class="ic"><i class="bi bi-tree"></i></span>
+                    <div><h3>Responsible environment</h3><p>Environmental management and rehabilitation that safeguard communities and land.</p></div>
                 </div>
             </div>
         </div>
-    </div> <!-- end container -->
+    </div>
 </section>
-<!-- end features-section -->
 
-
-<!-- start about-section-s2 -->
-<section class="about-section-s2 section-padding">
+<?php if ($services): ?>
+<section class="section">
     <div class="container">
-        <div class="row">
-            <div class="col col-lg-9">
-                <div class="section-title-s2">
-                    <span>Welcome to</span>
-                    <h2>Our Company</h2>
-                </div>
-            </div>
+        <div class="section-head center" data-aos="fade-up">
+            <span class="eyebrow">What we do</span>
+            <h2>Integrated services for the mining sector</h2>
+            <p>From the first geological survey to the last rehabilitation, we support every stage with technical depth and practical training.</p>
         </div>
-        <div class="row">
-            <div class="col col-lg-7">
-                <div class="about-features clearfix">
-                    <div class="grid">
-                        <div class="icon">
-                            <i class="fi flaticon-worker"></i>
-                        </div>
-                        <div class="details">
-                            <span class="count">01</span>
-                            <h3>Team of Professional</h3>
-                            <p>Our skilled team at IMC Ltd combines diverse expertise to ensure exceptional results in geographical mining through collaboration and innovation.</p>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="icon">
-                            <i class="fi flaticon-gear"></i>
-                        </div>
-                        <div class="details">
-                            <span class="count">02</span>
-                            <h3>Full of services</h3>
-                            <p>We provide a comprehensive range of mining services, from exploration to rehabilitation, focusing on quality and sustainability to benefit our clients and communities.</p>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="icon">
-                            <i class="fi flaticon-energy-saving"></i>
-                        </div>
-                        <div class="details">
-                            <span class="count">03</span>
-                            <h3>Smart Technology</h3>
-                            <p>IMC Ltd utilizes advanced technology to enhance efficiency and safety in our operations, paving the way for a sustainable future in the mining industry.</p>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="icon">
-                            <i class="fi flaticon-oil"></i>
-                        </div>
-                        <div class="details">
-                            <span class="count">04</span>
-                            <h3>27/7 Support</h3>
-                            <p>We offer round-the-clock support to promptly address client inquiries, ensuring smooth and efficient project operations at all times.</p>
-                        </div>
-                    </div>
+        <div class="row g-4">
+            <?php foreach ($services as $i => $s): ?>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<?= ($i % 3) * 100 ?>">
+                    <article class="card-ym service-card">
+                        <div class="ic"><i class="bi <?= e($s['icon']) ?>"></i></div>
+                        <h3><a href="<?= url('services/' . $s['slug']) ?>"><?= e($s['title']) ?></a></h3>
+                        <p><?= e($s['summary']) ?></p>
+                        <span class="link-arrow">Learn more <i class="bi bi-arrow-right"></i></span>
+                    </article>
                 </div>
-            </div>
-            <div class="col col-lg-5"></div>
+            <?php endforeach; ?>
         </div>
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="more-about">
-                    <a href="about">More About Us <i class="fi flaticon-slim-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end container -->
+    </div>
 </section>
-<!-- end about-section-s2 -->
+<?php endif; ?>
 
-
-
-<!-- start feature-projects -->
-<section class="feature-projects section-padding">
+<section class="section section-soft">
     <div class="container">
-        <div class="row">
-            <div class="col col-lg-10 col-lg-offset-1">
-                <div class="section-title-s3">
-                    <span>Recently we have finished</span>
-                    <h2>Featured Projects</h2>
-                    <p>At IMC Ltd, we believe in the potential of geological resources to drive economic development. Our commitment to excellence and integrity sets us apart as a trusted partner in the mining sector.</p>
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="about-visual">
+                    <img class="main" src="<?= asset('img/photo-4.jpg') ?>" alt="Miners attending a safety training session holding training booklets" loading="lazy">
+                    <div class="badge-card"><strong>Training that happens on site</strong><small>Practical, role-based and in your team's language.</small></div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="projects-grids clearfix">
-                <?php
-                    $projects = $clintObjects->getProjectLimit();
-                    $count = 1;
-                    if (!empty($projects)) {
-                        foreach ($projects as $project) {
-                            if ($count % 2 == 0) {
-                                $class = "grid";
-                            }
-                            else {
-                                $class = "grid right-text";
-                            }
-                            ?>
-                    <div class="<?php echo $class; ?>">
-                        <div class="project-pic">
-                            <img src="ControlPanel/upload/project/<?php echo $project['file'] ?>" style="" alt>
-                        </div>
-                        <div class="details">
-                            <div class="inner">
-                                <div class="count">0<?php echo $count ?></div>
-                                <h4><?php echo $project['title'] ?></h4>
-                                <p class="blogContent"><?php echo $project['content'] ?> </p>
-                                <a href="project-single?project=<?php echo $project['code'] ?>" class="theme-btn">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                    $count++;
-                        }
-                    }
-                    else {
-                        echo "<div class='alert alert-warning'>No Projects Found</div>";
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="view-all">
-                    <a href="project">View All Projects <i class="fi flaticon-slim-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end container -->
-</section>
-<!-- end feature-projects -->
-
-
-<!-- stat cta-section-s2 -->
-<section class="cta-section-s2">
-    <div class="container">
-        <div class="row">
-            <div class="col col-lg-7 col-sm-8">
-                <div class="cta-text">
-                    <h2>By providing exceptional mining services, <span>we have achieved significant success over the years</span>
-                    </h2>
-                    <p>Elevating the standards of the mining industry throughout the country.</p>
-                </div>
-            </div>
-            <div class="col col-lg-3 col-lg-offset-2 col-sm-4">
-                <div class="contact-info">
-                    <h4>+250 783 582 953</h4>
-                    <a href="tel:+250783582953" class="theme-btn">Contact with us</a>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end container -->
-</section>
-<!-- end cta-section-s2 -->
-
-
-<!-- start partners-section -->
-<section class="partners-section">
-    <h2 class="hidden">Partners</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="partner-grids partners-slider">
-                    <div class="grid">
-                        <img src="assets/images/partners/img-1.png" alt>
-                    </div>
-                    <div class="grid">
-                        <img src="assets/images/partners/img-2.png" alt>
-                    </div>
-                    <div class="grid">
-                        <img src="assets/images/partners/img-3.png" alt>
-                    </div>
-                    <div class="grid">
-                        <img src="assets/images/partners/img-4.png" alt>
-                    </div>
-                    <div class="grid">
-                        <img src="assets/images/partners/img-2.png" alt>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end container -->
-</section>
-<!-- end partners-section -->
-
-
-<!-- start contact-section -->
-<section class="contact-section">
-    <h2 class="hidden">Contact</h2>
-    <div class="content-area">
-        <div class="left-col">
-            <div class="contact-form">
-                <div class="rotate-text">
-                    <span>Get A Free Quote</span>
-                </div>
-                <form method="post" class="contact-validation-active" id="contact-form" id="contact-form-s2">
-                    <div>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Your Name *">
-                    </div>
-                    <div>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Your Email *">
-                    </div>
-                    <div>
-                        <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject *">
-                    </div>
-                    <div>
-                        <textarea class="form-control" name="note" id="note" placeholder="Message..."></textarea>
-                    </div>
-                    <div class="submit-btn-wrapper">
-                        <button type="submit" class="theme-btn-s3">Appointment</button>
-                        <div id="loader">
-                            <i class="ti-reload"></i>
-                        </div>
-                    </div>
-                    <div class="clearfix error-handling-messages">
-                        <div id="success">Thank you</div>
-                        <div id="error"> Error occurred while sending email. Please try again later. </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="right-col">
-            <div class="contact-info">
-                <ul>
-                    <li><i class="ti-mobile"></i> <span>Phone:</span> +250 783 582 953</li>
-                    <li><i class="ti-email"></i> <span>Email:</span> info@imc.rw</li>
-                    <li><i class="ti-location-pin"></i> <span>Address:</span> Kicukiro, Kigali-RWANDA
-                        united</li>
-                    <li><i class="ti-alarm-clock"></i> <span>Working Hours:</span> 08.00AM - 05.00 PM
-                    </li>
+            <div class="col-lg-7" data-aos="fade-left">
+                <span class="eyebrow">About us</span>
+                <h2 class="mt-3 mb-4" style="font-size:clamp(1.8rem,3.2vw,2.5rem)">Experience from the field, expertise from the classroom</h2>
+                <p><?= e(setting('company_name')) ?> was established to support mining operators, cooperatives, government institutions and development partners in achieving safe, productive and environmentally sustainable mining operations.</p>
+                <p>Our services are built on extensive practical experience within Rwanda's mining industry and delivered by qualified professionals with strong academic and field backgrounds in geology, mining operations, environmental management and responsible mineral sourcing.</p>
+                <ul class="check-list">
+                    <li><i class="bi bi-check-circle-fill"></i><span>Rwanda-registered, locally rooted team</span></li>
+                    <li><i class="bi bi-check-circle-fill"></i><span>Consultancy and training under one roof</span></li>
+                    <li><i class="bi bi-check-circle-fill"></i><span>Clear, practical recommendations your crews can act on</span></li>
                 </ul>
+                <a href="<?= url('about') ?>" class="btn btn-dark-ym mt-4">More about us</a>
             </div>
         </div>
-    </div> <!-- end container -->
+    </div>
 </section>
-<!-- end contact-section -->
 
-
-<!--  start recent-blog-section -->
-<section class="recent-blog-section section-padding">
+<section class="section section-dark">
     <div class="container">
-        <div class="row">
-            <div class="col col-lg-9">
-                <div class="section-title">
-                    <span>IMC News</span>
-                    <h2>Recent News</h2>
-                    <p>Stay updated with the latest happenings at IMC Ltd. Our commitment to transparency and community engagement means we share important milestones, project updates, and industry insights. Here are some of our recent highlights:</p>
-                </div>
-            </div>
+        <div class="section-head center" data-aos="fade-up">
+            <span class="eyebrow">How we work</span>
+            <h2>A simple process built around results</h2>
         </div>
-        <div class="row">
-            <div class="col col-xs-12">
-                <div class="blog-grids clearfix">
-                  <?php
-                    $news = $clintObjects->getNewsLimit();
-                    if (!empty($news)) {
-                        foreach ($news as $new) {
-                            ?>
-
-                    <div class="grid">
-                        <div class="img-holder">
-                            <img src="ControlPanel/upload/news/<?php echo $new['latest_file']; ?>" style="height: 250px; width: 100%;" alt>
-                        </div>
-                        <div class="date">
-                            <p><?php echo substr($new['created_at'], 5, 6) ; ?> <span><?php echo substr($new['created_at'], 0, 4) ; ?></span></p>
-                        </div>
-                        <div class="details">
-                            <h3><a href="news-details?article=<?php echo $new['code']; ?>"><?php echo $new['title']; ?></a></h3>
-                            <div class="meta">
-                                <ul>
-                                    <li>By - SMC Media</li>
-                                    <li><a href="#">Geology</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                        }
-                    }
-                    else {
-                        echo "<div class='alert alert-warning'>No News Found</div>";
-                    }
-                    ?>
-
+        <div class="row g-4">
+            <?php foreach ($steps as $i => [$title, $text]): ?>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="<?= $i * 100 ?>">
+                    <div class="step"><div class="num">0<?= $i + 1 ?></div><h3><?= e($title) ?></h3><p><?= e($text) ?></p></div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
-    </div> <!-- end container -->
+    </div>
 </section>
-<!-- end recent-blog-section -->
 
+<?php if ($projects): ?>
+<section class="section">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+            <div class="section-head mb-0" data-aos="fade-up">
+                <span class="eyebrow">Our work</span>
+                <h2>Featured projects</h2>
+            </div>
+            <a href="<?= url('projects') ?>" class="link-arrow">View all projects <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            <?php foreach ($projects as $i => $p): ?>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<?= $i * 100 ?>">
+                    <?php include __DIR__ . '/inc/project-card.php'; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
+<section class="cta-band" style="background-image:url('<?= asset('img/photo-3.jpg') ?>')">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <h2>Ready to make your operation safer and more compliant?</h2>
+                <p class="mb-0 text-white-50">Tell us about your site and we'll recommend the most practical next step.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="<?= url('contact') ?>" class="btn btn-gold btn-lg">Talk to our team</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-<?php
-require 'inc/footer.php';
-?>
+<?php if ($posts): ?>
+<section class="section">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+            <div class="section-head mb-0" data-aos="fade-up">
+                <span class="eyebrow">News &amp; insights</span>
+                <h2>Latest from Young Masters</h2>
+            </div>
+            <a href="<?= url('news') ?>" class="link-arrow">All articles <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            <?php foreach ($posts as $i => $post): ?>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<?= $i * 100 ?>">
+                    <?php include __DIR__ . '/inc/post-card.php'; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<script type="application/ld+json"><?= json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Organization',
+    'name' => setting('company_name'),
+    'url' => abs_url(),
+    'logo' => abs_url('assets/img/logo.png'),
+    'email' => setting('email'),
+    'telephone' => setting('phone'),
+    'address' => ['@type' => 'PostalAddress', 'streetAddress' => setting('address'), 'addressCountry' => 'RW'],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
+
+<?php require __DIR__ . '/inc/footer.php'; ?>
