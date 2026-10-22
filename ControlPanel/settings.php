@@ -35,7 +35,7 @@ if (is_post()) {
 
 $groups = [
     'Company' => ['company_name', 'tagline', 'about_short'],
-    'Contact details' => ['phone', 'email', 'address', 'hours'],
+    'Contact details' => ['phone', 'whatsapp', 'email', 'address', 'hours'],
     'Social media' => ['linkedin', 'facebook', 'twitter', 'instagram', 'youtube'],
     'Map' => ['map_embed'],
 ];

@@ -14,6 +14,18 @@ PHP 8.1+, MySQL/MariaDB, Bootstrap 5. No framework, no build step.
    IMC-era tables (`project`, `news`, `file`, `gallery`, `contact`, `newslater`, `account_holders`); the legacy tables are never modified.
 3. Open `/ControlPanel/` and sign in. Fill in **Site settings** (phone, email, address, social links, map).
 
+### Removing the old IMC-era tables
+
+```
+php database/cleanup-legacy.php                # dry run: lists every table the app does not use
+php database/cleanup-legacy.php --confirm      # writes storage/backups/legacy-tables-*.sql, then drops them
+php database/cleanup-legacy.php --confirm --keep=data,settings   # protect tables you still need
+```
+
+Run `install.php --migrate-legacy` first if you still want the old data. The backup file restores anything dropped.
+
+The admin **Backup** page downloads a full SQL dump of the site tables.
+
 For production set `APP_ENV=production`, `APP_DEBUG=false`, serve over HTTPS and enable the HSTS line in `.htaccess`.
 
 ## Layout

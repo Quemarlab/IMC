@@ -69,11 +69,14 @@ $socials = ['linkedin' => 'bi-linkedin', 'facebook' => 'bi-facebook', 'twitter' 
         </div>
         <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
             <span>&copy; <?= date('Y') ?> <?= e(setting('company_name')) ?>. All rights reserved.</span>
-            <span><?= e(setting('tagline')) ?></span>
+            <span><a href="<?= url('privacy') ?>">Privacy policy</a> · <a href="<?= url('feed.xml') ?>">RSS</a> · <?= e(setting('tagline')) ?></span>
         </div>
     </div>
 </footer>
 
+<?php if ($wa = preg_replace('/\D/', '', setting('whatsapp'))): ?>
+<a class="wa-float" href="https://wa.me/<?= e($wa) ?>" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+<?php endif; ?>
 <button class="to-top" id="toTop" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
 <script src="<?= asset('vendor/bootstrap/bootstrap.bundle.min.js') ?>"></script>

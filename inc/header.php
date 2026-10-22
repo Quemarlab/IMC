@@ -53,6 +53,7 @@ $socials = ['linkedin' => 'bi-linkedin', 'facebook' => 'bi-facebook', 'twitter' 
     <link href="<?= asset('vendor/aos/aos.css') ?>" rel="stylesheet">
     <link href="<?= asset('vendor/glightbox/glightbox.min.css') ?>" rel="stylesheet">
     <link href="<?= asset('css/site.css') ?>" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" title="<?= e($company) ?> news" href="<?= url('feed.xml') ?>">
     <?= $page['head'] ?? '' ?>
 </head>
 <body>
@@ -86,6 +87,7 @@ $socials = ['linkedin' => 'bi-linkedin', 'facebook' => 'bi-facebook', 'twitter' 
                         <a class="nav-link<?= $page['nav'] === $key ? ' active' : '' ?>" href="<?= url($path) ?>"<?= $page['nav'] === $key ? ' aria-current="page"' : '' ?>><?= e($label) ?></a>
                     </li>
                 <?php endforeach; ?>
+                <li class="nav-item"><a class="nav-link" href="<?= url('search') ?>" aria-label="Search"><i class="bi bi-search"></i><span class="d-lg-none ms-2">Search</span></a></li>
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
                     <a class="btn btn-gold btn-sm px-4 py-2" href="<?= url('contact') ?>">Request a consultation</a>
                 </li>

@@ -11,3 +11,7 @@ ControlPanel/upload/*/*
 Thumbs.db
 .DS_Store
 .idea/
+
+# Database backups
+storage/backups/*
+!storage/backups/.gitkeep

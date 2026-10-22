@@ -38,6 +38,7 @@ function admin_nav(): array
             ['users', 'Users', 'bi-people', null],
             ['settings', 'Site settings', 'bi-sliders', null],
             ['activity', 'Activity log', 'bi-clock-history', null],
+            ['backup', 'Backup', 'bi-database-down', null],
         ]];
     }
     return $items;

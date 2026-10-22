@@ -15,6 +15,7 @@ RewriteRule ^projects/([A-Za-z0-9-]+)/?$ project.php?slug=$1 [L,QSA]
 RewriteRule ^news/([A-Za-z0-9-]+)/?$ article.php?slug=$1 [L,QSA]
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
 RewriteRule ^robots\.txt$ robots.php [L]
+RewriteRule ^feed\.xml$ feed.php [L]
 
 # Hide the .php extension
 RewriteCond %{REQUEST_FILENAME} !-d

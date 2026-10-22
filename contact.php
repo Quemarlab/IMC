@@ -19,7 +19,9 @@ $map = setting('map_embed');
                             <div class="col-md-6"><label class="form-label" for="name">Full name *</label><input class="form-control" id="name" name="name" required maxlength="120" autocomplete="name"></div>
                             <div class="col-md-6"><label class="form-label" for="email">Email *</label><input class="form-control" type="email" id="email" name="email" required maxlength="190" autocomplete="email"></div>
                             <div class="col-md-6"><label class="form-label" for="phone">Phone</label><input class="form-control" id="phone" name="phone" maxlength="40" autocomplete="tel"></div>
-                            <div class="col-md-6"><label class="form-label" for="subject">Subject</label><input class="form-control" id="subject" name="subject" maxlength="190" value="<?= e(input('subject')) ?>"></div>
+                            <div class="col-md-6"><label class="form-label" for="topic">Service of interest</label><select class="form-select" id="topic" name="topic"><option value="">General enquiry</option>
+                                <?php foreach (\YM\Repositories\Services::latest(50) as $s): ?><option<?= input('service') === $s['slug'] ? ' selected' : '' ?> value="<?= e($s['title']) ?>"><?= e($s['title']) ?></option><?php endforeach; ?></select></div>
+                            <div class="col-12"><label class="form-label" for="subject">Subject</label><input class="form-control" id="subject" name="subject" maxlength="190" value="<?= e(input('subject')) ?>"></div>
                             <div class="col-12"><label class="form-label" for="body">How can we help? *</label><textarea class="form-control" id="body" name="body" rows="6" required minlength="10" maxlength="5000"></textarea></div>
                             <div class="col-12"><button class="btn btn-gold btn-lg" type="submit">Send message</button></div>
                             <div class="col-12"><div class="form-status" role="status"></div></div>

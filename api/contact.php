@@ -29,12 +29,17 @@ $v = new Validator($_POST, [
     'email' => 'required|email|max:190',
     'phone' => 'max:40',
     'subject' => 'max:190',
+    'topic' => 'max:120',
     'body' => 'required|min:10|max:5000',
 ]);
 if ($v->fails()) {
     json_response(['ok' => false, 'message' => $v->first()], 422);
 }
 $d = $v->data();
+if (($d['topic'] ?? '') !== '') {
+    $d['subject'] = trim(($d['subject'] !== '' ? $d['subject'] : 'Enquiry') . ' [' . $d['topic'] . ']');
+}
+unset($d['topic']);
 
 // Store first: a lead must never be lost because SMTP is down.
 Messages::create($d + ['ip' => client_ip()]);

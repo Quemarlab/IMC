@@ -15,6 +15,7 @@ final class Settings
         'email'        => ['Public email', 'info@youngmasters.rw', 'email'],
         'address'      => ['Address', 'Kicukiro, Kigali, Rwanda', 'text'],
         'hours'        => ['Working hours', 'Mon – Fri, 08:00 – 17:00', 'text'],
+        'whatsapp'     => ['WhatsApp number (digits with country code, e.g. 250783582953)', '', 'text'],
         'linkedin'     => ['LinkedIn URL', '', 'url'],
         'facebook'     => ['Facebook URL', '', 'url'],
         'twitter'      => ['X / Twitter URL', '', 'url'],

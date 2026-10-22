@@ -126,6 +126,21 @@ if ($id) {
     exit;
 }
 
+// ------------------------------------------------------------ CSV export
+if (input('export') === 'csv') {
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="messages-' . date('Y-m-d') . '.csv"');
+    $out = fopen('php://output', 'w');
+    fwrite($out, "﻿");
+    fputcsv($out, ['Received', 'Name', 'Email', 'Phone', 'Subject', 'Message', 'Status']);
+    foreach (\YM\Core\DB::all('SELECT * FROM messages ORDER BY id DESC') as $r) {
+        fputcsv($out, array_map(fn($v) => preg_match('/^[=+\-@	]/', (string) $v) ? "'" . $v : $v,
+            [$r['created_at'], $r['name'], $r['email'], $r['phone'], $r['subject'], $r['body'], $r['status']]));
+    }
+    Audit::log('export', 'message', null, 'CSV export');
+    exit;
+}
+
 // ------------------------------------------------------------ list view
 $status = input('status');
 $q = input('q');
@@ -141,7 +156,8 @@ admin_header('Messages', 'messages');
         <?php endforeach; ?>
     </ul>
     <form method="get" class="d-flex gap-2"><?php if ($status): ?><input type="hidden" name="status" value="<?= e($status) ?>"><?php endif; ?>
-        <input class="form-control" type="search" name="q" value="<?= e($q) ?>" placeholder="Search messages…" style="width:230px"></form>
+        <input class="form-control" type="search" name="q" value="<?= e($q) ?>" placeholder="Search messages…" style="width:230px">
+        <a class="btn btn-light" href="<?= admin_url('messages?export=csv') ?>" title="Export all messages as CSV"><i class="bi bi-download"></i></a></form>
 </div>
 <div class="card">
     <?php if (!$pg['items']): ?>

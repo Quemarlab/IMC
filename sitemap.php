@@ -10,7 +10,7 @@ use YM\Repositories\Services;
 header('Content-Type: application/xml; charset=utf-8');
 
 $urls = [['', null, '1.0']];
-foreach (['about', 'services', 'projects', 'news', 'gallery', 'contact'] as $p) {
+foreach (['about', 'services', 'projects', 'news', 'gallery', 'contact', 'privacy'] as $p) {
     $urls[] = [$p, null, '0.7'];
 }
 foreach (Services::paginate(['public' => true, 'per' => 100])['items'] as $r) {
