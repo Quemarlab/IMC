@@ -10,6 +10,7 @@ final class Audit
     {
         try {
             DB::insert('audit_logs', [
+                'app' => APP_ID,
                 'user_id' => $_SESSION['uid'] ?? null,
                 'action' => $action,
                 'entity' => $entity,

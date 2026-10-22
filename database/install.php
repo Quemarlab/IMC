@@ -20,6 +20,7 @@ if (PHP_SAPI !== 'cli') {
 require __DIR__ . '/../app/bootstrap.php';
 
 use YM\Core\DB;
+use YM\Core\Migrator;
 use YM\Repositories\Users;
 
 $opts = getopt('', ['admin::', 'name::', 'migrate-legacy']);
@@ -28,6 +29,9 @@ $opts = getopt('', ['admin::', 'name::', 'migrate-legacy']);
 $sql = preg_replace('/^\s*--.*$/m', '', (string) file_get_contents(__DIR__ . '/schema.sql'));
 foreach (array_filter(array_map('trim', explode(';', $sql))) as $statement) {
     DB::pdo()->exec($statement);
+}
+foreach (Migrator::run(__DIR__ . '/migrations') as $id) {
+    echo "✔ Migration applied: $id\n";
 }
 echo "✔ Schema ready\n";
 
@@ -70,9 +74,10 @@ if (!empty($opts['admin'])) {
     $password = bin2hex(random_bytes(6)) . 'A7';
     $existing = DB::one('SELECT id FROM users WHERE email = ?', [$email]);
     if ($existing) {
-        DB::update('users', (int) $existing['id'], ['password_hash' => password_hash($password, PASSWORD_DEFAULT), 'role' => 'admin', 'status' => 'active']);
+        DB::update('users', (int) $existing['id'], ['password_hash' => password_hash($password, PASSWORD_DEFAULT), 'status' => 'active']);
+        Users::setAccess((int) $existing['id'], 'site', 'admin');
     } else {
-        Users::create($opts['name'] ?? 'Administrator', $email, $password, 'admin');
+        Users::create($opts['name'] ?? 'Administrator', $email, $password, ['site' => 'admin']);
     }
     echo "✔ Admin ready: $email\n  Temporary password: $password\n  (change it after signing in)\n";
 }
@@ -101,13 +106,13 @@ if (isset($opts['migrate-legacy'])) {
             if (DB::val('SELECT id FROM users WHERE email = ?', [strtolower($u['email'])])) {
                 continue;
             }
-            DB::insert('users', [
+            $uid = DB::insert('users', [
                 'name' => trim($u['firstname'] . ' ' . $u['lastname']),
                 'email' => strtolower($u['email']),
                 'password_hash' => $u['password'],
-                'role' => 'admin',
                 'status' => $u['status'] === 'active' ? 'active' : 'disabled',
             ]);
+            Users::setAccess($uid, 'site', 'admin');
             $n++;
         }
         echo "✔ Users migrated: $n (non-management demo accounts are intentionally skipped)\n";

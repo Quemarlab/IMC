@@ -169,3 +169,27 @@ function input(string $key, string $default = ''): string
     $v = $_POST[$key] ?? $_GET[$key] ?? $default;
     return is_string($v) ? trim($v) : $default;
 }
+
+/**
+ * A safe same-site path from a ?next= value, or null. Blocks other hosts, protocol-relative URLs,
+ * header injection and redirect loops back to the sign-in pages. $mustStartWith limits it to one area (e.g. the admin panel).
+ */
+function safe_next(?string $next, ?string $mustStartWith = null): ?string
+{
+    $next = (string) $next;
+    if ($next === '' || $next[0] !== '/' || str_starts_with($next, '//') || str_contains($next, '\\') || preg_match('/[\x00-\x1f]/', $next)
+        || preg_match('#(^|/)\.\.?(/|$|[?\#])#', $next) || preg_match('/%(2e|2f|5c)/i', $next)) {
+        return null;
+    }
+    $base = base_path();
+    if ($base !== '' && $next !== $base && !str_starts_with($next, $base . '/')) {
+        return null;
+    }
+    if ($mustStartWith !== null && !str_starts_with($next, $mustStartWith)) {
+        return null;
+    }
+    if (preg_match('#/(login|login-2fa|logout|forgot-password|reset-password)(\.php)?(\?|$)#', $next)) {
+        return null;
+    }
+    return $next;
+}

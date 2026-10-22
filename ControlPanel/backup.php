@@ -18,13 +18,13 @@ if (is_post()) {
     header('Content-Disposition: attachment; filename="' . $file . '"');
     header('Cache-Control: no-store');
     $out = fopen('php://output', 'w');
-    Backup::dump($out, Backup::schemaTables());
+    Backup::dump($out, Backup::allTables());
     Audit::log('backup', 'database', null, $file);
     exit;
 }
 
 $tables = [];
-foreach (Backup::schemaTables() as $t) {
+foreach (Backup::allTables() as $t) {
     $tables[$t] = (int) DB::val("SELECT COUNT(*) FROM `$t`");
 }
 $legacy = Backup::legacyTables();

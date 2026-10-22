@@ -7,6 +7,8 @@ declare(strict_types=1);
  */
 
 define('YM_ROOT', dirname(__DIR__));
+/** Which application this codebase is: 'site' (website + admin) or 'ump'. Roles are looked up per application. */
+define('APP_ID', 'site');
 
 spl_autoload_register(static function (string $class): void {
     if (strncmp($class, 'YM\\', 3) !== 0) {

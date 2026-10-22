@@ -13,6 +13,9 @@ final class Backup
         return $m[1];
     }
 
+    /** Tables owned by the other application that shares this database: never reported as legacy, always backed up. */
+    private const SHARED_DB_TABLES = ['stock_records', 'stock_revisions', 'stock_attachments'];
+
     public static function allTables(): array
     {
         return array_map('current', DB::pdo()->query('SHOW FULL TABLES WHERE Table_type = "BASE TABLE"')->fetchAll(\PDO::FETCH_NUM));
@@ -21,7 +24,7 @@ final class Backup
     /** Tables present in the database that the application does not use. */
     public static function legacyTables(): array
     {
-        return array_values(array_diff(self::allTables(), self::schemaTables()));
+        return array_values(array_diff(self::allTables(), self::schemaTables(), self::SHARED_DB_TABLES));
     }
 
     /** Write a dump of $tables to an open stream. */

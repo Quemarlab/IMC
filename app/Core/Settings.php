@@ -21,6 +21,11 @@ final class Settings
         'twitter'      => ['X / Twitter URL', '', 'url'],
         'instagram'    => ['Instagram URL', '', 'url'],
         'youtube'      => ['YouTube URL', '', 'url'],
+        'sec_session_minutes'  => ['Sign out after inactivity (minutes)', '120', 'number'],
+        'sec_lockout_attempts' => ['Failed sign-ins before an account is locked', '5', 'number'],
+        'sec_lockout_minutes'  => ['Lock duration (minutes)', '15', 'number'],
+        'sec_password_min'     => ['Minimum password length', '10', 'number'],
+        'sec_require_2fa'      => ['Require two-factor authentication for administrators', '0', 'bool'],
         'map_embed'    => ['Google Maps embed URL (src of the iframe)', '', 'url'],
     ];
 

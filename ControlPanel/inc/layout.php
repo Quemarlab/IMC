@@ -83,7 +83,10 @@ function admin_header(string $title, string $active = '', string $head = ''): vo
                 <?php endforeach; ?>
             <?php endforeach; ?>
         </nav>
-        <a class="nav-item view-site" href="<?= url() ?>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i><span>View website</span></a>
+        <?php $umpUrl = \YM\Core\Env::get('UMP_URL'); $showUmp = $umpUrl && Auth::roleFor((int) $user['id'], 'ump') !== null; if ($showUmp): ?>
+            <a class="nav-item view-site" href="<?= e($umpUrl) ?>/dashboard"><i class="bi bi-box-seam"></i><span>Open UMP</span></a>
+        <?php endif; ?>
+        <a class="nav-item<?= $showUmp ? '' : ' view-site' ?>" href="<?= url() ?>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i><span>View website</span></a>
     </aside>
     <div class="admin-backdrop" id="backdrop"></div>
 

@@ -1,4 +1,4 @@
-﻿# Young Masters LTD — website & admin panel
+# Young Masters LTD — website & admin panel
 
 Public website plus a custom admin panel for a Rwanda mining consultancy (Mining · OHS · Environment).
 PHP 8.1+, MySQL/MariaDB, Bootstrap 5. No framework, no build step.
@@ -43,6 +43,16 @@ For production set `APP_ENV=production`, `APP_DEBUG=false`, serve over HTTPS and
 | `database/` | `schema.sql` and the CLI installer / legacy migrator |
 | `storage/logs/` | Application error log |
 
+## Shared accounts (website admin + UMP)
+
+The website admin and the UMP production system (separate repository) run on **one database** and share accounts, passwords,
+two-factor authentication, mail settings and the security settings. **Users** (this admin → Users) is where people are created and given a
+role in each system: Website (Administrator / Editor) and UMP (Administrator / Operator / Viewer). New people can be emailed an invitation link
+to choose their own password. Set `UMP_URL` in `.env` for the "Open UMP" sidebar shortcut. Platform changes live in `database/migrations/platform_*.php`
+(identical copies in the UMP repository); `php database/install.php` applies them.
+
+Security settings (Site settings → Security) apply to both systems: inactivity timeout, lockout, minimum password length, and
+"require two-factor for administrators".
 ## Security model
 
 - Secrets live only in `.env`. `app/`, `database/`, `storage/` and dotfiles are blocked by `.htaccess`.

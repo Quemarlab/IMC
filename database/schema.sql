@@ -9,12 +9,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name`          VARCHAR(120) NOT NULL,
   `email`         VARCHAR(190) NOT NULL,
   `password_hash` VARCHAR(255) NOT NULL,
-  `role`          ENUM('admin','editor') NOT NULL DEFAULT 'editor',
   `status`        ENUM('active','disabled') NOT NULL DEFAULT 'active',
+  `totp_secret`         VARCHAR(64) NULL,
+  `totp_enabled_at`     DATETIME NULL,
+  `totp_last_step`      INT UNSIGNED NOT NULL DEFAULT 0,
+  `recovery_codes`      TEXT NULL,
+  `password_changed_at` DATETIME NULL,
   `last_login_at` DATETIME NULL,
   `created_at`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_users_email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- What each account may do in each application ('site' = website admin, 'ump' = production system).
+CREATE TABLE IF NOT EXISTS `user_access` (
+  `user_id` INT UNSIGNED NOT NULL,
+  `app`     VARCHAR(20) NOT NULL,
+  `role`    VARCHAR(20) NOT NULL,
+  `notify`  TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`, `app`),
+  CONSTRAINT `fk_access_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `login_attempts` (
@@ -145,6 +159,7 @@ CREATE TABLE IF NOT EXISTS `site_settings` (
 
 CREATE TABLE IF NOT EXISTS `audit_logs` (
   `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `app`        VARCHAR(20) NOT NULL DEFAULT 'site',
   `user_id`    INT UNSIGNED NULL,
   `action`     VARCHAR(60) NOT NULL,
   `entity`     VARCHAR(60) NOT NULL DEFAULT '',
@@ -154,5 +169,12 @@ CREATE TABLE IF NOT EXISTS `audit_logs` (
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_audit_created` (`created_at`),
+  KEY `idx_audit_app` (`app`, `id`),
   CONSTRAINT `fk_audit_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `schema_migrations` (
+  `id`         VARCHAR(120) NOT NULL,
+  `applied_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
