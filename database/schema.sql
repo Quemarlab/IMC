@@ -88,6 +88,8 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `cover_image`  VARCHAR(190) NULL,
   `is_featured`  TINYINT(1) NOT NULL DEFAULT 0,
   `is_published` TINYINT(1) NOT NULL DEFAULT 1,
+  `notify_subscribers` TINYINT(1) NOT NULL DEFAULT 0,
+  `notified_at` DATETIME NULL,
   `created_at`   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -105,6 +107,8 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `cover_image`  VARCHAR(190) NULL,
   `author_id`    INT UNSIGNED NULL,
   `is_published` TINYINT(1) NOT NULL DEFAULT 1,
+  `notify_subscribers` TINYINT(1) NOT NULL DEFAULT 0,
+  `notified_at` DATETIME NULL,
   `published_at` DATETIME NULL,
   `created_at`   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -144,7 +148,11 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
   `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `email`      VARCHAR(190) NOT NULL,
   `token`      CHAR(32) NOT NULL,
-  `status`     ENUM('active','unsubscribed') NOT NULL DEFAULT 'active',
+  `status`     ENUM('pending','active','unsubscribed') NOT NULL DEFAULT 'pending',
+  `want_news`     TINYINT(1) NOT NULL DEFAULT 1,
+  `want_projects` TINYINT(1) NOT NULL DEFAULT 1,
+  `confirmed_at`  DATETIME NULL,
+  `unsubscribed_at` DATETIME NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_subscribers_email` (`email`),
@@ -177,4 +185,32 @@ CREATE TABLE IF NOT EXISTS `schema_migrations` (
   `id`         VARCHAR(120) NOT NULL,
   `applied_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Emails sent to subscribers when news / projects are published. One campaign per announcement; one delivery row per recipient (resumable).
+CREATE TABLE IF NOT EXISTS `newsletter_campaigns` (
+  `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `kind`        ENUM('news','project') NOT NULL,
+  `item_id`     INT UNSIGNED NOT NULL,
+  `subject`     VARCHAR(190) NOT NULL,
+  `status`      ENUM('sending','done','cancelled') NOT NULL DEFAULT 'sending',
+  `total`       INT UNSIGNED NOT NULL DEFAULT 0,
+  `sent`        INT UNSIGNED NOT NULL DEFAULT 0,
+  `failed`      INT UNSIGNED NOT NULL DEFAULT 0,
+  `created_by`  INT UNSIGNED NULL,
+  `created_at`  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `finished_at` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_campaign_status` (`status`, `id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `newsletter_deliveries` (
+  `campaign_id`   INT UNSIGNED NOT NULL,
+  `subscriber_id` INT UNSIGNED NOT NULL,
+  `status`        ENUM('sent','failed') NOT NULL,
+  `attempted_at`  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`campaign_id`, `subscriber_id`),
+  KEY `idx_delivery_day` (`status`, `attempted_at`),
+  CONSTRAINT `fk_delivery_campaign` FOREIGN KEY (`campaign_id`) REFERENCES `newsletter_campaigns` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_delivery_subscriber` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

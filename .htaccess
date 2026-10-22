@@ -6,7 +6,7 @@ DirectoryIndex index.php
 RewriteEngine On
 
 # Never serve internals or dotfiles (except .well-known)
-RewriteRule ^(app|database|storage)(/|$) - [F,L]
+RewriteRule ^(app|database|storage|bin)(/|$) - [F,L]
 RewriteRule (^|/)\.(?!well-known) - [F,L]
 
 # Pretty URLs for detail pages

@@ -193,3 +193,31 @@ function safe_next(?string $next, ?string $mustStartWith = null): ?string
     }
     return $next;
 }
+
+/**
+ * Sends the redirect to the browser first, then runs $job (e.g. emailing subscribers) without making the admin wait.
+ * Falls back to running the job inline when the connection cannot be closed early.
+ */
+function redirect_then(string $to, callable $job): never
+{
+    ignore_user_abort(true);
+    @set_time_limit(120);
+    session_write_close();
+    header('Location: ' . $to, true, 302);
+    header('Content-Length: 0');
+    header('Connection: close');
+    if (function_exists('fastcgi_finish_request')) {
+        fastcgi_finish_request();
+    } else {
+        while (ob_get_level() > 0) {
+            @ob_end_flush();
+        }
+        flush();
+    }
+    try {
+        $job();
+    } catch (\Throwable $e) {
+        error_log('Background job failed: ' . $e->getMessage());
+    }
+    exit;
+}

@@ -23,7 +23,7 @@ if (is_post()) {
             continue;
         }
         if ($type === 'number') {
-            [$min, $max] = ['sec_session_minutes' => [5, 1440], 'sec_lockout_attempts' => [3, 20], 'sec_lockout_minutes' => [1, 1440], 'sec_password_min' => [8, 64]][$key] ?? [0, 1000000];
+            [$min, $max] = ['sec_session_minutes' => [5, 1440], 'sec_lockout_attempts' => [3, 20], 'sec_lockout_minutes' => [1, 1440], 'sec_password_min' => [8, 64], 'newsletter_daily_cap' => [1, 100000]][$key] ?? [0, 1000000];
             if (!ctype_digit($value) || (int) $value < $min || (int) $value > $max) {
                 $errors[] = "$label must be a whole number between $min and $max.";
                 continue;
@@ -53,6 +53,7 @@ $groups = [
     'Contact details' => ['phone', 'whatsapp', 'email', 'address', 'hours'],
     'Social media' => ['linkedin', 'facebook', 'twitter', 'instagram', 'youtube'],
     'Map' => ['map_embed'],
+    'Newsletter' => ['newsletter_enabled', 'newsletter_daily_cap'],
     'Security — applies to the website admin and UMP' => ['sec_session_minutes', 'sec_lockout_attempts', 'sec_lockout_minutes', 'sec_password_min', 'sec_require_2fa'],
 ];
 admin_header('Site settings', 'settings');

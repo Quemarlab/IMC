@@ -40,6 +40,7 @@ function resources(): array
                 ['completed_on', 'Completed on', 'date', ['side' => true, 'rules' => 'date']],
                 ['is_featured', 'Feature on top of the list', 'checkbox', ['side' => true]],
                 ['is_published', 'Published', 'checkbox', ['side' => true, 'default' => 1]],
+                ['notify_subscribers', 'Email subscribers when published', 'checkbox', ['side' => true, 'default' => 1, 'help' => 'Sent once to everyone subscribed to this topic. A scheduled article is emailed on its publish date.']],
             ],
         ],
         'news' => [
@@ -60,6 +61,7 @@ function resources(): array
                 ['category', 'Category', 'text', ['side' => true, 'rules' => 'required|max:80', 'default' => 'News']],
                 ['published_at', 'Publish date', 'datetime', ['side' => true, 'rules' => 'date', 'help' => 'A future date schedules the article.']],
                 ['is_published', 'Published', 'checkbox', ['side' => true, 'default' => 1]],
+                ['notify_subscribers', 'Email subscribers when published', 'checkbox', ['side' => true, 'default' => 1, 'help' => 'Sent once to everyone subscribed to this topic. A scheduled article is emailed on its publish date.']],
             ],
         ],
         'services' => [

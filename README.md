@@ -53,6 +53,18 @@ to choose their own password. Set `UMP_URL` in `.env` for the "Open UMP" sidebar
 
 Security settings (Site settings → Security) apply to both systems: inactivity timeout, lockout, minimum password length, and
 "require two-factor for administrators".
+## Quick search
+
+Press **Ctrl+K** (or **/**) anywhere in the admin to jump to a page, start something new (article, project, service, photo), or search articles, projects, services, messages, subscribers and (for administrators) users. Arrow keys and Enter work; **Esc** closes.
+
+## Newsletter
+
+- **Subscribing** (footer form) uses double opt-in: the visitor gets an email and is only subscribed after clicking the link. If mail is not configured yet, subscriptions are activated directly.
+- **Every email** has a personal "manage preferences / unsubscribe" link, and a one-click unsubscribe button in mail apps (RFC 8058). The page at `/unsubscribe` lets people choose *news* and/or *projects*, unsubscribe, subscribe again, or request a fresh link by email.
+- **Announcements** go out automatically when a news article or project is published with **"Email subscribers when published"** ticked (on by default). Scheduled articles are announced on their publish date. Each item is announced once; **Newsletter** in the admin shows progress, lets you stop a send, retry failures, email yourself a copy, or send again.
+- Sending runs in the background in batches within the **daily limit** (Settings → Newsletter; stay under your mail provider's cap). Add this cron job (every 5 minutes) so scheduled articles and big lists keep going between admin visits, and set `APP_URL` in `.env` so links in emails are correct:
+  `*/5 * * * *  /usr/local/bin/php /home/USER/public_html/bin/newsletter.php`
+- `MAIL_ENCRYPTION` may be `ssl`, `tls`, or `none` (local relay / test mail catcher only). Real environment variables override `.env`.
 ## Security model
 
 - Secrets live only in `.env`. `app/`, `database/`, `storage/` and dotfiles are blocked by `.htaccess`.

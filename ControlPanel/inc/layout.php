@@ -31,6 +31,7 @@ function admin_nav(): array
         ['Inbox', [
             ['messages', 'Messages', 'bi-chat-dots', null],
             ['subscribers', 'Subscribers', 'bi-envelope-paper', null],
+            ['newsletter', 'Newsletter', 'bi-megaphone', null],
         ]],
     ];
     if (Auth::is('admin')) {
@@ -95,6 +96,8 @@ function admin_header(string $title, string $active = '', string $head = ''): vo
             <button class="btn btn-icon d-lg-none" id="sidebarToggle" type="button" aria-label="Menu"><i class="bi bi-list fs-4"></i></button>
             <h1><?= e($title) ?></h1>
             <div class="ms-auto d-flex align-items-center gap-2">
+                <button class="pal-btn d-none d-md-inline-flex" type="button" data-palette-open aria-label="Quick search (Ctrl K)"><i class="bi bi-search"></i>Search <kbd>Ctrl K</kbd></button>
+                <button class="btn btn-icon d-md-none" type="button" data-palette-open aria-label="Search"><i class="bi bi-search"></i></button>
                 <button class="btn btn-icon d-none" id="notifyToggle" type="button" title="Get desktop alerts for new messages" aria-label="Enable desktop notifications"><i class="bi bi-bell"></i></button>
                 <button class="btn btn-icon" id="themeToggle" type="button" aria-label="Toggle dark mode"><i class="bi bi-moon-stars"></i></button>
                 <div class="dropdown">
@@ -144,9 +147,36 @@ function admin_footer(array $scripts = []): void
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastWrap" style="z-index:1090"></div>
 
+<?php
+$paletteItems = [];
+foreach (admin_nav() as [$grp, $links]) {
+    foreach ($links as [$key, $label, $icon, $href]) {
+        $paletteItems[] = ['label' => $label, 'url' => admin_url($href ?? $key), 'icon' => $icon, 'group' => 'Go to'];
+    }
+}
+foreach ([['New article', 'resource?r=news&action=new', 'bi-newspaper'], ['New project', 'resource?r=projects&action=new', 'bi-briefcase'],
+    ['New service', 'resource?r=services&action=new', 'bi-gear'], ['Add a gallery photo', 'resource?r=gallery&action=new', 'bi-images']] as [$label, $href, $icon]) {
+    $paletteItems[] = ['label' => $label, 'url' => admin_url($href), 'icon' => $icon, 'group' => 'Create'];
+}
+$paletteItems[] = ['label' => 'View the website', 'url' => url(), 'icon' => 'bi-box-arrow-up-right', 'group' => 'Quick actions'];
+if (($ump = \YM\Core\Env::get('UMP_URL')) && Auth::roleFor((int) Auth::id(), 'ump') !== null) {
+    $paletteItems[] = ['label' => 'Open UMP', 'url' => rtrim($ump, '/') . '/dashboard', 'icon' => 'bi-box-seam', 'group' => 'Quick actions'];
+}
+$paletteItems[] = ['label' => 'Switch light / dark mode', 'action' => 'theme', 'icon' => 'bi-moon-stars', 'group' => 'Quick actions'];
+?>
+<script type="application/json" id="paletteData"><?= json_encode($paletteItems, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP) ?></script>
+<div id="palette" data-search="<?= e(admin_url('search')) ?>" hidden role="dialog" aria-modal="true" aria-label="Quick search">
+    <div class="pal-box">
+        <input type="text" placeholder="Jump to a page, or search articles, projects, messages, subscribers…" autocomplete="off" aria-label="Search">
+        <div class="pal-list"></div>
+        <div class="pal-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
+    </div>
+</div>
+
 <script src="<?= asset('vendor/bootstrap/bootstrap.bundle.min.js') ?>"></script>
 <?php foreach ($scripts as $s): ?><script src="<?= e($s) ?>"></script><?php endforeach; ?>
 <script src="<?= admin_asset('admin.js') ?>"></script>
+<script src="<?= admin_asset('palette.js') ?>"></script>
 </body>
 </html>
     <?php

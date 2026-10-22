@@ -26,6 +26,8 @@ final class Settings
         'sec_lockout_minutes'  => ['Lock duration (minutes)', '15', 'number'],
         'sec_password_min'     => ['Minimum password length', '10', 'number'],
         'sec_require_2fa'      => ['Require two-factor authentication for administrators', '0', 'bool'],
+        'newsletter_enabled'   => ['Send newsletter emails to subscribers', '1', 'bool'],
+        'newsletter_daily_cap' => ['Newsletter emails per day (stay under your mail provider limit, e.g. Gmail ~500)', '450', 'number'],
         'map_embed'    => ['Google Maps embed URL (src of the iframe)', '', 'url'],
     ];
 

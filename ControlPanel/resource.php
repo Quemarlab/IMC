@@ -6,6 +6,7 @@ require __DIR__ . '/inc/resources.php';
 
 use YM\Core\Audit;
 use YM\Core\Auth;
+use YM\Core\Newsletter;
 use YM\Core\Sanitizer;
 use YM\Core\Upload;
 use YM\Core\Validator;
@@ -41,6 +42,9 @@ if (is_post()) {
         $repo::update($id, ['is_published' => (int) !$row['is_published']]);
         Audit::log($row['is_published'] ? 'unpublish' : 'publish', $r, $id, $row['title'] ?? '');
         flash('success', 'Visibility updated.');
+        if (in_array($r, ['news', 'projects'], true)) {
+            redirect_then($self, static function () { Newsletter::queueDue(); Newsletter::process(25); });
+        }
         redirect($self);
     }
 
@@ -155,7 +159,17 @@ if (is_post()) {
         flash('success', ucfirst($cfg['singular']) . ' created.');
     }
     unset($_SESSION['_old']);
-    redirect($self . (!empty($_POST['add_another']) ? '&action=new' : ''));
+    $to = $self . (!empty($_POST['add_another']) ? '&action=new' : '');
+    if (in_array($r, ['news', 'projects'], true)) {
+        if (!empty($data['notify_subscribers']) && !empty($data['is_published']) && empty($existing['notified_at'])) {
+            $future = $r === 'news' && !empty($data['published_at']) && strtotime($data['published_at']) > time();
+            flash('info', Newsletter::enabled()
+                ? ($future ? 'Subscribers will be emailed on the publish date.' : 'Subscribers are being emailed now — follow progress under Newsletter.')
+                : 'Subscribers were not emailed: mail or the newsletter is switched off (see Settings).');
+        }
+        redirect_then($to, static function () { Newsletter::queueDue(); Newsletter::process(25); });
+    }
+    redirect($to);
 }
 
 // ---------------------------------------------------------------- views
@@ -191,6 +205,12 @@ if ($action === 'new' || $action === 'edit') {
                 $checked = $oldInput !== null ? isset($oldInput[$name]) : (bool) $val;
                 echo '<div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="f_' . $name . '" name="' . $name . '" value="1"' . ($checked ? ' checked' : '') . '>'
                     . '<label class="form-check-label fw-semibold" for="f_' . $name . '">' . e($label) . '</label></div>';
+                if ($name === 'notify_subscribers') {
+                    echo !empty($row['notified_at'])
+                        ? '<div class="form-text text-success"><i class="bi bi-check2-circle"></i> Subscribers were emailed on ' . e(fmt_date($row['notified_at'], 'j M Y, H:i')) . '. Saving again will not email them twice.</div>'
+                        : ($help ? str_replace('<div class="form-text">', '<div class="form-text">', $help) : '');
+                    $help = '';
+                }
                 break;
             case 'textarea':
                 echo '<label class="form-label" for="f_' . $name . '">' . e($label) . $req . '</label><textarea class="form-control" id="f_' . $name . '" name="' . $name . '" rows="' . (int) ($o['rows'] ?? 4) . '"'
