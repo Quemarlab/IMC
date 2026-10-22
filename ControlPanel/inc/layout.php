@@ -65,7 +65,7 @@ function admin_header(string $title, string $active = '', string $head = ''): vo
     <?= $head ?>
     <script src="<?= admin_asset('theme.js') ?>"></script>
 </head>
-<body class="admin">
+<body class="admin" data-poll-url="<?= e(admin_url('messages?poll=1')) ?>" data-latest-msg="<?= Messages::latestId() ?>" data-unread="<?= $unread ?>" data-base-title="<?= e($title) ?>">
 <div class="admin-shell">
     <aside class="admin-sidebar" id="sidebar">
         <a class="brand" href="<?= admin_url('dashboard') ?>">
@@ -92,6 +92,7 @@ function admin_header(string $title, string $active = '', string $head = ''): vo
             <button class="btn btn-icon d-lg-none" id="sidebarToggle" type="button" aria-label="Menu"><i class="bi bi-list fs-4"></i></button>
             <h1><?= e($title) ?></h1>
             <div class="ms-auto d-flex align-items-center gap-2">
+                <button class="btn btn-icon d-none" id="notifyToggle" type="button" title="Get desktop alerts for new messages" aria-label="Enable desktop notifications"><i class="bi bi-bell"></i></button>
                 <button class="btn btn-icon" id="themeToggle" type="button" aria-label="Toggle dark mode"><i class="bi bi-moon-stars"></i></button>
                 <div class="dropdown">
                     <button class="user-chip dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -137,6 +138,8 @@ function admin_footer(array $scripts = []): void
         </div>
     </div></div>
 </div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastWrap" style="z-index:1090"></div>
 
 <script src="<?= asset('vendor/bootstrap/bootstrap.bundle.min.js') ?>"></script>
 <?php foreach ($scripts as $s): ?><script src="<?= e($s) ?>"></script><?php endforeach; ?>

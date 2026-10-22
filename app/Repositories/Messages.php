@@ -31,6 +31,16 @@ final class Messages
         DB::run('DELETE FROM messages WHERE id = ?', [$id]);
     }
 
+    public static function latestId(): int
+    {
+        return (int) DB::val('SELECT COALESCE(MAX(id), 0) FROM messages');
+    }
+
+    /** Messages newer than $afterId, oldest first. */
+    public static function since(int $afterId, int $limit = 20): array
+    {
+        return DB::all('SELECT * FROM messages WHERE id > ? ORDER BY id ASC LIMIT ' . (int) $limit, [$afterId]);
+    }
     public static function unread(): int
     {
         return (int) DB::val("SELECT COUNT(*) FROM messages WHERE status = 'new'");

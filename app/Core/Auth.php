@@ -81,6 +81,12 @@ final class Auth
         return self::$user = $user;
     }
 
+    /** Is there a live session? Unlike user(), does not extend the idle timeout (used by background polling). */
+    public static function peek(): bool
+    {
+        return !empty($_SESSION['uid']) && time() - ($_SESSION['last_seen'] ?? 0) <= self::IDLE_SECONDS;
+    }
+
     public static function check(): bool
     {
         return self::user() !== null;
